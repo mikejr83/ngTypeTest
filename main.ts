@@ -1,12 +1,12 @@
 import { app, BrowserWindow, screen } from "electron";
 import * as electronReload from "electron-reload";
 import * as path from "path";
-import * as yargs from "yargs";
 
 import App from "./electron/app";
+import config from "./electron/configuration";
 import logger from "./electron/logging";
 
-if (yargs.argv.serve) {
+if (config.serve) {
   logger.debug("Starting electron-reload.");
   electronReload(__dirname, {});
 }

@@ -8,6 +8,7 @@ import path = require("path");
 import url = require("url");
 import * as yargs from "yargs";
 
+import config from "./configuration";
 import logger from "./logging";
 
 // import { buildMenu } from "./menu/builder";
@@ -56,10 +57,8 @@ export default class App {
 
     App.loadPage("../index.html");
 
-    // Get command line args.
-    const serve = yargs.argv.serve !== undefined;
     // Open the DevTools.
-    if (serve) {
+    if (config.showDebugTools) {
       App.AppWindow.webContents.openDevTools();
     }
 
