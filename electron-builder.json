@@ -1,5 +1,5 @@
 {
-  "productName": "angular-electron",
+  "productName": "ngType Tester",
   "directories": {
     "app": "dist",
     "output": "app-builds"
