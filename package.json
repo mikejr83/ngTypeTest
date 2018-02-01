@@ -31,7 +31,7 @@
     "start": "npm-run-all --parallel webpack:watch electron:serve",
     "webpack:watch": "webpack --watch",
     "start:web": "webpack-dev-server --content-base . --port 4200 --inline",
-    "build:electron:main": "tsc main.ts --outDir dis -m commonjs --lib es6,dom && copyfiles package.json dist && cd dist && npm install --prod && cd ..",
+    "build:electron:main": "tsc main.ts --outDir dist -m commonjs --lib es6,dom && copyfiles package.json dist && cd dist && npm install --prod && cd ..",
     "build": "webpack --display-error-details && npm run build:electron:main",
     "build:prod": "cross-env NODE_ENV=production npm run build",
     "build-readme": "node ./support/concat-readme.js",
@@ -49,7 +49,8 @@
   },
   "dependencies": {
     "fs-extra": "^5.0.0",
-    "winston": "^2.4.0"
+    "winston": "^2.4.0",
+    "yargs": "^11.0.0"
   },
   "devDependencies": {
     "@angular/cli": "1.6.4",
@@ -72,6 +73,7 @@
     "@types/lodash": "^4.14.99",
     "@types/node": "7.0.7",
     "@types/winston": "^2.3.7",
+    "@types/yargs": "^10.0.1",
     "autoprefixer": "7.1.4",
     "circular-dependency-plugin": "3.0.0",
     "codelyzer": "3.2.0",
