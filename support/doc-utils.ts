@@ -63,7 +63,7 @@ export async function concatenateReadmeFiles(basePath?: string, outputPath?: str
   // Need to get the list of files that will be concatenated.
   const files = loadFileList(basePath || "./");
 
-  console.log("found the following:", files);
+  console.log("found the following:", files);  // tslint:disable-line
 
   let fileIndex = 0;
 

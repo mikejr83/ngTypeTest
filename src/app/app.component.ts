@@ -1,26 +1,29 @@
-import { Component } from '@angular/core';
-import { ElectronService } from './providers/electron.service';
-import { TranslateService } from '@ngx-translate/core';
+import { Component } from "@angular/core";
+import { TranslateService } from "@ngx-translate/core";
+
+import { ElectronService } from "app/providers/electron.service";
+import { LoggerService } from "app/providers/logging/logger.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
   constructor(public electronService: ElectronService,
+    private logger: LoggerService,
     private translate: TranslateService) {
 
-    translate.setDefaultLang('en');
+    translate.setDefaultLang("en");
 
     if (electronService.isElectron()) {
-      console.log('Mode electron');
+      this.logger.debug("Mode electron");
       // Check if electron is correctly injected (see externals in webpack.config.js)
-      console.log('c', electronService.ipcRenderer);
+      this.logger.debug("ipcRenderer", electronService.ipcRenderer);
       // Check if nodeJs childProcess is correctly injected (see externals in webpack.config.js)
-      console.log('c', electronService.childProcess);
+      this.logger.debug("childProcess", electronService.childProcess);
     } else {
-      console.log('Mode web');
+      this.logger.debug("Mode web");
     }
   }
 }

@@ -2,13 +2,7 @@ import * as fs from "fs-extra";
 import * as path from "path";
 import * as yargs from "yargs";
 
-import { IConfiguration } from "./configuration";
-
-const defaultConfiguration: IConfiguration = {
-  logLevel: "info",
-  serve: false,
-  showDebugTools: false
-};
+import { defaultConfiguration, IConfiguration } from "./configuration";
 
 const relativePathBase = "../../";
 const configPath = path.join(__dirname, relativePathBase, "config.json");

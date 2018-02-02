@@ -1,6 +1,7 @@
 import {
   app,
   BrowserWindow,
+  ipcMain,
   Menu,
   screen
 } from "electron";
@@ -9,6 +10,7 @@ import url = require("url");
 import * as yargs from "yargs";
 
 import config from "./configuration";
+import { EVENTS } from "./constants";
 import logger from "./logging";
 
 // import { buildMenu } from "./menu/builder";
@@ -55,6 +57,9 @@ export default class App {
     // Create the App window
     App.createWindow();
 
+    App.AppWindow.on("closed", App.onClose);
+    App.AppWindow.webContents.on("did-finish-load", App.windowDidFinishLoad);
+
     App.loadPage("../index.html");
 
     // Open the DevTools.
@@ -63,8 +68,6 @@ export default class App {
     }
 
     // buildMenu();
-
-    App.AppWindow.on("closed", App.onClose);
   }
 
   private static createWindow() {
@@ -94,5 +97,12 @@ export default class App {
       protocol: "file:",
       slashes: true
     }));
+  }
+
+  private static windowDidFinishLoad() {
+    logger.silly("The app window finished loading!");
+
+    logger.debug("Firing IPC event:" + EVENTS.MAIN.CONFIGURATION_UPDATED, config);
+    App.AppWindow.webContents.send(EVENTS.MAIN.CONFIGURATION_UPDATED, config);
   }
 }

@@ -1,0 +1,8 @@
+export const EVENTS = {
+  MAIN: {
+    CONFIGURATION_UPDATED: "CONFIGURATION_UPDATED"
+  },
+  RENDERER: {
+
+  }
+};
