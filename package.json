@@ -4,9 +4,12 @@
   "description": "Angular 5 with Electron (Typescript + SASS + Hot Reload)",
   "homepage": "https://github.com/maximegris/angular-electron",
   "author": {
-    "name": "Maxime GRIS",
-    "email": "maxime.gris@gmail.com"
+    "name": "Michael Gardner",
+    "email": "mikejr83@gmail.com"
   },
+  "contributors": [
+    "Maime GRIS <maxime.gris@gmail.com>"
+  ],
   "keywords": [
     "angular",
     "angular 5",
