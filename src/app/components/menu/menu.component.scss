@@ -1,0 +1,47 @@
+.navbar {
+  justify-content: flex-start;
+}
+
+.navbar-side {
+  height: 100%;
+  width: 25%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  border-left: 2px solid #ccc;
+  background-color: #f7f7f9;
+  overflow-y: scroll;
+  z-index: 1000;
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+  -webkit-transition: 300ms ease;
+  transition: 300ms ease;
+  overflow: hidden;
+  .navbar-toggler {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+  ul {
+    margin-top: 0.5rem;
+    padding: 0;
+    list-style: none;
+  }
+  .navbar-side-item {
+    padding: 1.5rem 0;
+    margin: 0;
+    border-bottom: 2px solid #ccc;
+    height: 5rem;
+  }
+  .side-link {
+    padding-left: 2rem;
+  }
+  &.reveal {
+    -webkit-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    transform: translateX(0%);
+    -webkit-transition: 300ms ease;
+    transition: 300ms ease;
+  }
+}
