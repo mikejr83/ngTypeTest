@@ -51,7 +51,9 @@
     "e2e": "protractor ./protractor.conf.js"
   },
   "dependencies": {
+    "bootstrap": "^4.0.0",
     "fs-extra": "^5.0.0",
+    "ngx-bootstrap": "^2.0.2",
     "winston": "^2.4.0",
     "yargs": "^11.0.0"
   },
