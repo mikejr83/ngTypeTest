@@ -1,5 +1,25 @@
 <div class="container">
-  <h1 class="title">
-    {{ 'PAGES.HOME.TITLE' | translate }}
-  </h1>
+  <div class="row">
+    <div class="col-md">
+      <h1 *ngIf="!userService.user">
+        {{ 'PAGES.HOME.TITLE' | translate }}
+        <small>
+          First time here?
+        </small>
+      </h1>
+      <h1 *ngIf="userService.user">
+          {{ 'PAGES.HOME.TITLE' | translate }}
+          <small>
+            Good to see you again {{userService.user.name}}
+          </small>
+        </h1>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div *ngIf="userService.user">
+      Welcome {{userService.user.name}}
+    </div>
+    <user-editor *ngIf="!userService.user"></user-editor>
+  </div>
 </div>

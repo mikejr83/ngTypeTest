@@ -1,5 +1,9 @@
 .navbar {
   justify-content: flex-start;
+  .navbar-brand {
+    color: #e53935;
+    font-weight: 600;
+  }
 }
 
 .navbar-side {
