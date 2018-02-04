@@ -184,12 +184,13 @@ function getPlugins() {
     ]
   }));
 
-  plugins.push(new SourceMapDevToolPlugin({
-    "filename": "[file].map[query]",
-    "moduleFilenameTemplate": "[resource-path]",
-    "fallbackModuleFilenameTemplate": "[resource-path]?[hash]",
-    "sourceRoot": "webpack:///"
-  }));
+  // Removing so that the sourcemaps will work for the renderer process
+  // plugins.push(new SourceMapDevToolPlugin({
+  //   "filename": "[file].map[query]",
+  //   "moduleFilenameTemplate": "[resource-path]",
+  //   "fallbackModuleFilenameTemplate": "[resource-path]?[hash]",
+  //   "sourceRoot": "webpack:///"
+  // }));
 
   plugins.push(new CommonsChunkPlugin({
     "name": [
