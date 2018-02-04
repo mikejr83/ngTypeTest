@@ -23,7 +23,6 @@ export class MenuComponent implements OnInit {
   }
 
   logout() {
-    this.toggle();
     this.userService.logoutCurrentUser();
   }
 }

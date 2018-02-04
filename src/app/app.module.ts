@@ -16,6 +16,8 @@ import { AppRoutingModule } from "./app-routing.module";
 // Components
 import { AppComponent } from "app/app.component";
 import { HomeComponent } from "app/components/home/home.component";
+import { ConfigurationComponent } from "app/components/pages/configuration/configuration.component";
+import { TypingTestComponent } from "app/components/pages/typing-test/typing-test.component";
 import { MenuComponent } from "app/components/ui/menu/menu.component";
 import { UserEditorComponent } from "app/components/ui/user-editor/user-editor.component";
 // Directives
@@ -36,8 +38,10 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
+    ConfigurationComponent,
     HomeComponent,
     MenuComponent,
+    TypingTestComponent,
     UserEditorComponent,
     WebviewDirective
   ],

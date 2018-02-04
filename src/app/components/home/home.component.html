@@ -17,8 +17,11 @@
   </div>
 
   <div class="row justify-content-center">
-    <div *ngIf="userService.user">
+    <div *ngIf="userService.user" style="text-align:center;">
       Welcome {{userService.user.name}}
+      <div>
+        <a routerLink="/typing-test" class="btn btn-lg btn-primary">Take Typing Test</a>
+      </div>
     </div>
     <user-editor *ngIf="!userService.user"></user-editor>
   </div>
