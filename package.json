@@ -34,7 +34,7 @@
     "start": "npm-run-all --parallel webpack:watch electron:serve",
     "webpack:watch": "webpack --watch",
     "start:web": "webpack-dev-server --content-base . --port 4200 --inline",
-    "build:electron:main": "tsc main.ts --outDir dist --sourceMap true -m commonjs --lib es6,dom && copyfiles package.json dist && copyfiles config.json dist && cd dist && npm install --prod && cd ..",
+    "build:electron:main": "tsc main.ts --outDir dist --sourceMap true -t ES2016 -m commonjs --lib es6,dom && copyfiles package.json dist && cd dist && npm install --prod && cd ..",
     "build": "webpack --display-error-details && npm run build:electron:main",
     "build:prod": "cross-env NODE_ENV=production npm run build",
     "build-readme": "node ./support/concat-readme.js",
@@ -52,6 +52,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.0.0",
+    "electron-store": "^1.3.0",
     "fs-extra": "^5.0.0",
     "ngx-bootstrap": "^2.0.2",
     "tingodb": "^0.5.1",

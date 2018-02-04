@@ -6,44 +6,29 @@ import { OnDestroy } from "@angular/core/src/metadata/lifecycle_hooks";
 import * as childProcess from "child_process";
 import { ipcRenderer } from "electron";
 
-import { defaultConfiguration, IConfiguration } from "../../../electron/configuration/configuration";
+import config from "../../../electron/configuration";
+import { Configuration } from "../../../electron/configuration/configuration";
 import { EVENTS } from "../../../electron/constants";
 import { environment } from "../../environments";
 
 @Injectable()
-export class ElectronService implements OnDestroy {
+export class ElectronService {
 
   ipcRenderer: typeof ipcRenderer;
   childProcess: typeof childProcess;
-  configuration: IConfiguration;
+  configuration: Configuration;
 
   constructor() {
-    this.configuration = Object.assign({}, defaultConfiguration);
-
-    if (!environment.production) {
-      this.configuration.logLevel = "silly";
-    }
+    this.configuration = config;
 
     // Conditional imports
     if (this.isElectron()) {
       this.ipcRenderer = window.require("electron").ipcRenderer;
       this.childProcess = window.require("child_process");
-
-      this.ipcRenderer.on(EVENTS.MAIN.CONFIGURATION_UPDATED, this.onConfigurationUpdated);
     }
   }
 
   isElectron = () => {
     return window && window.process && window.process.type;
-  }
-
-  private onConfigurationUpdated(event: string, updatedConfig: IConfiguration) {
-    this.configuration = updatedConfig;
-
-    console.log("Configuration has been updated!", this.configuration);
-  }
-
-  ngOnDestroy() {
-    this.ipcRenderer.removeListener(EVENTS.MAIN.CONFIGURATION_UPDATED, this.onConfigurationUpdated);
   }
 }

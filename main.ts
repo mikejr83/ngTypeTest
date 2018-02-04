@@ -4,7 +4,10 @@ import * as path from "path";
 
 import App from "./electron/app";
 import config from "./electron/configuration";
+import { updateFromArguments } from "./electron/configuration/cli";
 import logger from "./electron/logging";
+
+updateFromArguments();
 
 if (config.serve) {
   logger.debug("Starting electron-reload.");

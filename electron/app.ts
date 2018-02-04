@@ -6,7 +6,6 @@ import * as yargs from "yargs";
 import config from "./configuration";
 import { EVENTS } from "./constants";
 import { registerIpcListeners } from "./ipc";
-import { onConfigurationUpdated } from "./ipc/configuration";
 import logger from "./logging";
 
 // import { buildMenu } from "./menu/builder";
@@ -105,7 +104,5 @@ export default class App {
 
   private static windowDidFinishLoad() {
     logger.silly("The app window finished loading!");
-
-    onConfigurationUpdated(config);
   }
 }

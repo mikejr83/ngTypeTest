@@ -17,3 +17,10 @@ export const EVENTS = {
 
   }
 };
+
+export const CONFIGURATION = {
+  LAST_USERNAME: "lastUsername",
+  LOG_LEVEL: "logLevel",
+  SERVE: "serve",
+  SHOW_DEBUG_TOOLS: "showDebugTools"
+}

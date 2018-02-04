@@ -11,9 +11,16 @@ export function registerIpcListeners() {
 
   ipcMain.on(EVENTS.MAIN.USER.LOAD, async (event, username: string) => {
     logger.debug(
-      "Handling " + EVENTS.MAIN.USER.LOAD + "IPC event! Username" + username
+      "Handling " + EVENTS.MAIN.USER.LOAD + " IPC event! Username: " + username
     );
-    const user = await loadUser(username);
+    let user: IUser;
+
+    try {
+    user = await loadUser(username);
+    } catch (e) {
+      logger.error("An error occurred while trying to load the user.", e);
+    }
+
     onUserLoaded(user);
   });
 

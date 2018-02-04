@@ -3,6 +3,9 @@
     <div class="form border border-light rounded" *ngIf="!newUser">
       Returning users can enter their email.
       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" ngModel required>
+      <button class="btn btn-primary" type="submit" [disabled]="f.invalid || f.pending">
+          Continue
+        </button>
       <a href="#" (click)="setupNewUser()">New Users</a>
     </div>
     <div *ngIf="newUser" class="form border border-light rounded">

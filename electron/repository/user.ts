@@ -11,19 +11,22 @@ export function saveUser(user: IUser): Promise<WriteOpResult> {
     logger.debug("Got database.", database);
 
     return database.collection<IUser>(COLLECTION_NAME).update(user, user,
-    {
-      upsert: true
-    });
+      {
+        upsert: true
+      });
   });
 }
 
 export async function loadUser(username: string): Promise<IUser> {
-  return getDatabase().then(async (database): Promise<IUser> => {
-    const usersCollection = database.collection<IUser>(COLLECTION_NAME);
-    const users = await usersCollection.find({ username }).toArray();
+  logger.silly("Going to find the user with username:", username);
 
-    if (users && Array.isArray(users) && users.length > 0) {
-      return users[0];
-    }
+  return getDatabase().then(async (database): Promise<IUser> => {
+    const usersCollection = await database.collection<IUser>(COLLECTION_NAME);
+
+    return new Promise<IUser>((resolve, reject) => {
+      usersCollection.findOne({ username }, (err, user) => {
+        resolve(user);
+      });
+    });
   });
 }
