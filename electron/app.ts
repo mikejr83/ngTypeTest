@@ -1,16 +1,12 @@
-import {
-  app,
-  BrowserWindow,
-  ipcMain,
-  Menu,
-  screen
-} from "electron";
+import { app, BrowserWindow, ipcMain, Menu, screen } from "electron";
 import path = require("path");
 import url = require("url");
 import * as yargs from "yargs";
 
 import config from "./configuration";
 import { EVENTS } from "./constants";
+import { registerIpcListeners } from "./ipc";
+import { onConfigurationUpdated } from "./ipc/configuration";
 import logger from "./logging";
 
 // import { buildMenu } from "./menu/builder";
@@ -76,7 +72,11 @@ export default class App {
     const electronScreen = screen;
     const size = electronScreen.getPrimaryDisplay().workAreaSize;
 
-    logger.debug("Creating a new BrowserWindow with the {0} height and {1} width", size.height, size.width);
+    logger.debug(
+      "Creating a new BrowserWindow with the {0} height and {1} width",
+      size.height,
+      size.width
+    );
     // Create the browser window.
     App.AppWindow = new BrowserWindow({
       height: size.height,
@@ -84,6 +84,8 @@ export default class App {
       x: 0,
       y: 0
     });
+
+    registerIpcListeners();
   }
 
   private static loadPage(pathname: string) {
@@ -92,17 +94,18 @@ export default class App {
     logger.debug("Looking for start page:", path.resolve(pathname));
 
     // and load the index.html of the app.
-    App.AppWindow.loadURL(url.format({
-      pathname,
-      protocol: "file:",
-      slashes: true
-    }));
+    App.AppWindow.loadURL(
+      url.format({
+        pathname,
+        protocol: "file:",
+        slashes: true
+      })
+    );
   }
 
   private static windowDidFinishLoad() {
     logger.silly("The app window finished loading!");
 
-    logger.debug("Firing IPC event:" + EVENTS.MAIN.CONFIGURATION_UPDATED, config);
-    App.AppWindow.webContents.send(EVENTS.MAIN.CONFIGURATION_UPDATED, config);
+    onConfigurationUpdated(config);
   }
 }
