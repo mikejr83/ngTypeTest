@@ -30,3 +30,11 @@ export async function loadUser(username: string): Promise<IUser> {
     });
   });
 }
+
+export async function updateUser(username: string, user: IUser): Promise<WriteOpResult> {
+  return getDatabase().then(async (database) => {
+    logger.silly("Got database.");
+
+    return database.collection<IUser>(COLLECTION_NAME).update({ username }, user);
+  });
+}

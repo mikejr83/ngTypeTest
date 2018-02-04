@@ -18,13 +18,35 @@ export class UserService {
       this.loadUser(electronService.configuration.lastUsername).then((user: IUser) => {
         loggerService.debug("Setting the current user:", user);
         this.user = user;
+        if (this.user === null) {
+          this.logoutCurrentUser();
+        }
       });
     }
   }
 
   public setLastUser(user: IUser) {
+    if (user) {
     this.user = user;
     this.electronService.configuration.lastUsername = user.username;
+    } else {
+      this.user = undefined;
+      this.electronService.configuration.lastUsername = undefined;
+    }
+  }
+
+  public async editUser(updatedUser: IUser): Promise<IUser> {
+    this.loggerService.debug("Updating the current user to this info:", updatedUser);
+    return new Promise<IUser>((resolve, reject) => {
+      this.loggerService.debug("Sending IPC " + EVENTS.MAIN.USER.UPDATE);
+
+      ipcRenderer.send(EVENTS.MAIN.USER.UPDATE, this.user, updatedUser);
+
+      ipcRenderer.once(EVENTS.MAIN.USER.ONUPDATED, (event, updatedAndSavedUser: IUser) => {
+        this.loggerService.debug("The user was edited and saved.");
+        resolve(updatedAndSavedUser);
+      });
+    });
   }
 
   public async loadUser(email: string): Promise<IUser | undefined> {

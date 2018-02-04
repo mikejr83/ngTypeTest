@@ -1,26 +1,35 @@
 <div class="user-editor d-flex justify-content-center">
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
-    <div class="form border border-light rounded" *ngIf="!newUser">
+    <div class="form border border-light rounded" *ngIf="!newUser && !editCurrentUser">
       Returning users can enter their email.
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" ngModel required>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email"
+        ngModel required>
+      <div *ngIf="loginError" class="text-danger text-darker">
+        Unable to find a user with this email!
+      </div>
       <button class="btn btn-primary" type="submit" [disabled]="f.invalid || f.pending">
-          Continue
-        </button>
+        Continue
+      </button>
       <a href="#" (click)="setupNewUser()">New Users</a>
     </div>
-    <div *ngIf="newUser" class="form border border-light rounded">
+    <div *ngIf="newUser || editCurrentUser" class="form border border-light rounded">
       <div class="form-group">
         <label for="usersName">Your Name</label>
-        <input type="text" class="form-control" id="usersName" placeholder="Name" ngModel required name="name">
+        <input type="text" class="form-control" id="usersName" placeholder="Name" [(ngModel)]="name" required name="name">
       </div>
       <div class="form-group">
         <label for="usersEmail">Email address</label>
-        <input type="email" class="form-control" id="usersEmail" aria-describedby="emailHelp" placeholder="Enter email" ngModel required name="email">
+        <input type="email" class="form-control" id="usersEmail" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="email"
+          required name="email">
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
       </div>
 
-      <button class="btn btn-primary" type="submit" [disabled]="f.invalid || f.pending">
+
+      <button class="btn btn-primary" type="submit" [disabled]="f.invalid || f.pending" *ngIf="!editCurrentUser">
         Sign-Up
+      </button>
+      <button class="btn btn-primary" type="submit" [disabled]="f.invalid || f.pending" *ngIf="editCurrentUser">
+        Update My Info
       </button>
     </div>
   </form>
