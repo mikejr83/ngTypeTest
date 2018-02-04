@@ -1,0 +1,41 @@
+{
+
+  "PAGES": {
+    "HOME": {
+      "BTN_TAKE_TEST": "Toma la prueba de tipeo",
+      "GREETING": "Es bueno verte de nuevo {{name}}",
+      "GREETING_2": "Bienvenido {{name}}",
+      "GREETING_3": "¿Primera vez aquí?",
+      "TITLE": "Bienvenido a ngType Tester"
+    },
+    "CONFIGURATION": {
+      "USER_INFO_TITLE": "Su Información de Usuario",
+      "LABELS": {
+        "LANGUAGE": "Idioma"
+      }
+    }
+  },
+  "COMPONENTS": {
+    "USER_EDITOR": {
+      "BTN_UPDATE_INFO": "Actualizar mi información",
+      "BTN_SIGNUP": "Regístrate",
+      "CANT_FIND_EMAIL": "¡No se puede encontrar un usuario con este correo electrónico!",
+      "CONTINUE": "Continuar",
+      "EMAIL_NOTICE": "Nunca compartiremos su correo electrónico con nadie más.",
+      "LABELS": {
+        "EMAIL": "Email",
+        "EMAIL_2": "Dirección de correo electrónico",
+        "NAME": "Nombre",
+        "NAME_2": "Tu nombre"
+      },
+      "NEW_USERS": "Usuarios nuevos",
+      "RETURNING_USER": "Los usuarios que regresan pueden ingresar su correo electrónico."
+    }
+  },
+  "NAVIGATION": {
+    "CONFIGURATION": "Configuración",
+    "HOME": "Origen",
+    "LOGOUT": "Cerrar sesión",
+    "SIGNUP": "Regístrate"
+  }
+}

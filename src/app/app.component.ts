@@ -12,9 +12,12 @@ import { LoggerService } from "app/providers/logging/logger.service";
 export class AppComponent {
   constructor(public electronService: ElectronService,
     private logger: LoggerService,
-    private translate: TranslateService) {
+    private translateService: TranslateService) {
 
-    translate.setDefaultLang("en");
+    translateService.setDefaultLang("en");
+
+    logger.debug("Setting the display culture to " + electronService.configuration.culture);
+    translateService.use(electronService.configuration.culture);
 
     if (electronService.isElectron()) {
       this.logger.debug("Mode electron");
@@ -25,5 +28,10 @@ export class AppComponent {
     } else {
       this.logger.debug("Mode web");
     }
+  }
+
+  public changeCurrentCulture(culture: string) {
+    this.logger.debug("Changing the display culture from " + this.translateService.currentLang + " to " + culture);
+    this.translateService.use(culture);
   }
 }

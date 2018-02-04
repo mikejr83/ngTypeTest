@@ -2,25 +2,23 @@
   <div class="row">
     <div class="col-md">
       <h1 *ngIf="!userService.user">
-        {{ 'PAGES.HOME.TITLE' | translate }}
-        <small>
-          First time here?
+        <span [translate]="'PAGES.HOME.TITLE'"></span>
+        <small [translate]="'PAGES.HOME.GREETING_3'">
         </small>
       </h1>
       <h1 *ngIf="userService.user">
-          {{ 'PAGES.HOME.TITLE' | translate }}
-          <small>
-            Good to see you again {{userService.user.name}}
-          </small>
-        </h1>
+        <span [translate]="'PAGES.HOME.TITLE'"></span>
+        <small [translate]="'PAGES.HOME.GREETING'" [translateParams]="{name: userService.user.name}">
+        </small>
+      </h1>
     </div>
   </div>
 
   <div class="row justify-content-center">
     <div *ngIf="userService.user" style="text-align:center;">
-      Welcome {{userService.user.name}}
+      <span [translate]="'PAGES.HOME.GREETING_2'" [translateParams]="{name: userService.user.name}"></span>
       <div>
-        <a routerLink="/typing-test" class="btn btn-lg btn-primary">Take Typing Test</a>
+        <a routerLink="/typing-test" class="btn btn-lg btn-primary" [translate]="'PAGES.HOME.BTN_TAKE_TEST'">Take Typing Test</a>
       </div>
     </div>
     <user-editor *ngIf="!userService.user"></user-editor>

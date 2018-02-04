@@ -1,7 +1,41 @@
 {
+
   "PAGES": {
-      "HOME": {
-          "TITLE": "Welcome to ngType Tester"
+    "HOME": {
+      "BTN_TAKE_TEST": "Take Typing Test",
+      "GREETING": "Good to see you again {{name}}",
+      "GREETING_2": "Welcome {{name}}",
+      "GREETING_3": "First time here?",
+      "TITLE": "Welcome to ngType Tester"
+    },
+    "CONFIGURATION": {
+      "USER_INFO_TITLE": "Your User Information",
+      "LABELS": {
+        "LANGUAGE": "Language"
       }
+    }
+  },
+  "COMPONENTS": {
+    "USER_EDITOR": {
+      "BTN_UPDATE_INFO": "Update My Info",
+      "BTN_SIGNUP": "Sign-Up",
+      "CANT_FIND_EMAIL": "Unable to find a user with this email!",
+      "CONTINUE": "Continue",
+      "EMAIL_NOTICE": "We'll never share your email with anyone else.",
+      "LABELS": {
+        "EMAIL": "Email",
+        "EMAIL_2": "Email address",
+        "NAME": "Name",
+        "NAME_2": "Your Name"
+      },
+      "NEW_USERS": "New Users",
+      "RETURNING_USER": "Returning users can enter their email."
+    }
+  },
+  "NAVIGATION": {
+    "CONFIGURATION": "Configuration",
+    "HOME": "Home",
+    "LOGOUT": "Log-out",
+    "SIGNUP": "Sign-up"
   }
 }

@@ -4,6 +4,7 @@ import { CONFIGURATION } from "../constants";
 import { IUser } from "../user/user";
 
 export interface IConfiguration {
+  culture: string;
   logLevel: string;
   serve: boolean;
   showDebugTools: boolean;
@@ -16,6 +17,15 @@ export class Configuration implements IConfiguration {
 
   constructor() {
     this.store = new Store();
+  }
+
+  get culture(): string {
+    return this.store.get(CONFIGURATION.CULTURE, "en");
+  }
+
+  set culture(culture: string) {
+    console.log("Culture updated:", culture);
+    this.store.set(CONFIGURATION.CULTURE, culture);
   }
 
   get lastUsername(): string {
@@ -48,6 +58,7 @@ export class Configuration implements IConfiguration {
 }
 
 export const defaultConfiguration: IConfiguration = {
+  culture: "en",
   logLevel: "info",
   serve: false,
   showDebugTools: false

@@ -3,7 +3,7 @@
 
   <ul class="nav navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" routerLink="">Home</a>
+      <a class="nav-link" routerLink="" [translate]="'NAVIGATION.HOME'"></a>
     </li>
   </ul>
 
@@ -18,13 +18,13 @@
     </button>
     <ul id="navbarSide">
       <li class="navbar-side-item" *ngIf="userService.user === undefined">
-        <a href="#" class="side-link">Signup</a>
+        <a routerLink="" class="side-link" [translate]="'NAVIGATION.SIGNUP'">Signup</a>
       </li>
       <li class="navbar-side-item" *ngIf="userService.user !== undefined">
-        <a href="#" class="side-link" (click)="toggle(); logout();">Log-out</a>
+        <a routerLink="" class="side-link" (click)="toggle(); logout();" [translate]="'NAVIGATION.LOGOUT'"></a>
       </li>
       <li class="navbar-side-item">
-          <a routerLink="/configuration" class="side-link" (click)="toggle();">Configuraiton</a>
+          <a routerLink="/configuration" class="side-link" (click)="toggle();" [translate]="'NAVIGATION.CONFIGURATION'"></a>
         </li>
     </ul>
   </div>

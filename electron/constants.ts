@@ -7,7 +7,9 @@ export const EVENTS = {
     USER: {
       LOAD: "MAIN_USER_LOAD",
       ONLOAD: "MAIN_USER_ONLOAD",
-      SAVE: "MAIN_USER_SAVE"
+      ONUPDATED: "MAIN_USER_ONUPDATED",
+      SAVE: "MAIN_USER_SAVE",
+      UPDATE: "MAIN_USER_UPDATE"
     }
   },
   /**
@@ -19,6 +21,7 @@ export const EVENTS = {
 };
 
 export const CONFIGURATION = {
+  CULTURE: "culture",
   LAST_USERNAME: "lastUsername",
   LOG_LEVEL: "logLevel",
   SERVE: "serve",
