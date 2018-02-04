@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 
 import { LoggerService } from "app/providers/logging/logger.service";
+import { UserService } from "app/providers/user.service";
 
 @Component({
   selector: "app-menu",
@@ -10,7 +11,7 @@ import { LoggerService } from "app/providers/logging/logger.service";
 export class MenuComponent implements OnInit {
   show: boolean = false;
 
-  constructor(private logger: LoggerService) { }
+  constructor(private logger: LoggerService, public userService: UserService) { }
 
   ngOnInit() {
   }
@@ -19,5 +20,10 @@ export class MenuComponent implements OnInit {
     this.logger.debug("Toggling the side nav", !this.show);
 
     this.show = !this.show;
+  }
+
+  logout() {
+    this.toggle();
+    this.userService.logoutCurrentUser();
   }
 }

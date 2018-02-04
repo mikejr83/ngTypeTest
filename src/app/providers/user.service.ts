@@ -23,6 +23,7 @@ export class UserService {
   }
 
   public setLastUser(user: IUser) {
+    this.user = user;
     this.electronService.configuration.lastUsername = user.username;
   }
 
@@ -40,6 +41,12 @@ export class UserService {
       this.loggerService.error("An error occurred for trying to load a user...", e);
       return undefined;
     })
+  }
+
+  public logoutCurrentUser() {
+    this.loggerService.debug("Logging out user! Setting user service user to undefined and clearing the config's lastUsername.");
+    this.user = undefined;
+    this.electronService.configuration.lastUsername = undefined;
   }
 
   public registerUser(email: string, name: string) {

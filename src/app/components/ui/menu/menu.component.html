@@ -17,9 +17,12 @@
       <span aria-hidden="true">&times;</span>
     </button>
     <ul id="navbarSide">
-      <li class="navbar-side-item">
+      <li class="navbar-side-item" *ngIf="userService.user === undefined">
         <a href="#" class="side-link">Signup</a>
       </li>
+      <li class="navbar-side-item" *ngIf="userService.user !== undefined">
+          <a href="#" class="side-link" (click)="logout()">Log-out</a>
+        </li>
       <!-- insert more side-items if you so choose -->
     </ul>
   </div>
