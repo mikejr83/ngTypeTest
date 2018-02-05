@@ -1,0 +1,25 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: auto 300px;
+  grid-gap: 1rem;
+  grid-auto-rows: minmax(3rem, auto);
+
+  > div {
+    outline: solid 1px red;
+  }
+}
+
+.test-text-container {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.test-user-input-container {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.test-status-container {
+  grid-column: 2;
+  grid-row: 1 / 2
+}

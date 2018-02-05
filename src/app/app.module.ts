@@ -24,6 +24,7 @@ import { UserEditorComponent } from "app/components/ui/user-editor/user-editor.c
 import { UserLogonComponent } from "app/components/ui/user-logon/user-logon.component";
 
 // Directives
+import { TestTextareaDirective } from "app/directives/tester/test-textarea.directive";
 import { WebviewDirective } from "app/directives/webview.directive";
 
 // Providers
@@ -32,7 +33,6 @@ import { ConsoleLoggerService } from "app/providers/logging/console-logger.servi
 import { LoggerService } from "app/providers/logging/logger.service";
 import { TestService } from "app/providers/test.service";
 import { UserService } from "app/providers/user.service";
-
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -46,6 +46,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeComponent,
     MenuComponent,
     TesterComponent,
+    TestTextareaDirective,
     TypingTestComponent,
     UserEditorComponent,
     UserLogonComponent,

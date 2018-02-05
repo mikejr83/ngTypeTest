@@ -1,5 +1,38 @@
 <div class="container">
+  <div class="wrapper">
+    <div class="test-text-container">
+      <div *ngIf="testService.testHtml" [innerHtml]="testService.testHtml">
 
-  <tester></tester>
+      </div>
+      <div *ngIf="!testService.testHtml">
+        <p>
+          To start the test press the button below. Your typing test text will then appear. The timer will be begin when you start
+          typing.
+        </p>
+        <button type="button" class="btn btn-primary" (click)="getTestText()">Get Test</button>
+      </div>
+
+
+    </div>
+    <div class="test-user-input-container">
+      <p *ngIf="testReady && !testService.testHasStarted && !testAborted" class="text-muted">
+        Your test is ready to begin. When you start typing the timer will begin.
+      </p>
+      <div class="form-group">
+        <textarea class="form-control" [disabled]="!testReady" [readonly]="testAborted" name="typedText" appTextarea [(ngModel)]="testService.typedText" #typedText >
+
+        </textarea>
+      </div>
+
+      <button type="button" class="btn btn-default" *ngIf="testReady && !testAborted" (click)="abortTest()">Abort Test</button>
+      <button type="button" class="btn btn-success" *ngIf="testAborted" (click)="restartTest()">Restart</button>
+      <button type="button" class="btn btn-primary" *ngIf="testAborted" (click)="newTest()">New Test</button>
+    </div>
+
+    <div class="test-status-container">
+      <h2>Stats</h2>
+      {{testService.formattedDuration}}
+    </div>
+
+  </div>
 </div>
-
