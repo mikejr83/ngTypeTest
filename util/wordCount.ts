@@ -12,8 +12,11 @@ export function findWordsCount(text: string): { [word: string]: number } {
 }
 
 export function findWordCount(text: string): number {
+  return splitTextIntoWords(text).length;
+}
+
+export function splitTextIntoWords(text: string): string[] {
   return text
     .replace(/[^\w\s]/g, "")
-    .split(/\s+/)
-    .length;
+    .split(/\s+/);
 }

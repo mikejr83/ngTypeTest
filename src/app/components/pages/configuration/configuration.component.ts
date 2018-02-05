@@ -27,6 +27,7 @@ export class ConfigurationComponent implements OnInit {
     }
   ];
   public currentUser: IUser;
+  public saving: boolean = false;
 
   constructor(private loggerService: LoggerService, private translateService: TranslateService, public electronService: ElectronService, public userService: UserService) {
   }
@@ -44,8 +45,11 @@ export class ConfigurationComponent implements OnInit {
     }
   }
 
-  public onSubmit() {
-    this.userService.editUser(this.currentUser);
+  public async onSubmit() {
+    this.saving = true;
+    await this.userService.editUser(this.currentUser);
+    await this.userService.loginUser(this.currentUser.username);
+    this.saving = false;
   }
 
   public languageChanged() {

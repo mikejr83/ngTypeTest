@@ -1,14 +1,15 @@
 import { Injectable } from "@angular/core";
 import { OnDestroy } from "@angular/core/src/metadata/lifecycle_hooks";
 
+import { ipcRenderer } from "electron";
 import * as _ from "lodash";
 
-import { ipcRenderer } from "electron";
-
 import { LoggerService } from "app/providers/logging/logger.service";
+import { UserService } from "app/providers/user.service";
 
-import config from "../../../electron/configuration";
+import { defaultConfiguration } from "../../../electron/configuration/user";
 import { EVENTS } from "../../../electron/constants"
+
 
 
 @Injectable()
@@ -16,7 +17,7 @@ export class TestService {
   public paragraphs: string[];
   public testHtml: string = "";
 
-  constructor(private loggerService: LoggerService) {
+  constructor(private loggerService: LoggerService, private userService: UserService) {
   }
 
   async loadTestText(): Promise<string[]> {
@@ -25,8 +26,10 @@ export class TestService {
     // Reset the HTML for the test.
     this.testHtml = "";
 
+    const userConfig = this.userService.user ? this.userService.user.configuration : defaultConfiguration;
+
     // Go get the test text.
-    ipcRenderer.send(EVENTS.RENDERER.TEST.LOAD_WIKIPEDIA);
+    ipcRenderer.send(EVENTS.RENDERER.TEST.LOAD_WIKIPEDIA, userConfig);
 
     return new Promise<string[]>((resolve, reject) => {
       // Wait for the resoponse for the wikipedia text.

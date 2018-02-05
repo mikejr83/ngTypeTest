@@ -1,6 +1,6 @@
 <div class="container">
   <h1 class="title" [translate]="'NAVIGATION.CONFIGURATION'"></h1>
-  <form (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit()" #configurationForm="ngForm">
     <div *ngIf="currentUser !== undefined">
       <h2 [translate]="'PAGES.CONFIGURATION.HEADINGS.USER_INFO'"></h2>
 
@@ -25,15 +25,15 @@
 
     <div class="form-group" *ngIf="currentUser !== undefined">
       <label for="wikipediaUrl" [translate]="'PAGES.CONFIGURATION.LABELS.WIKIPEDIA_URL'"></label>
-      <input type="url" class="form-control" id="wikipediaUrl" name="wikipediaUrl" [(ngModel)]="currentUser.configuration.wikipediaUrl">
+      <input type="url" class="form-control" id="wikipediaUrl" name="wikipediaUrl" [(ngModel)]="currentUser.configuration.wikipediaUrl" required>
       <small class="form-text text-muted" [translate]="'PAGES.CONFIGURATION.WIKIPEDIA_INFO'"></small>
     </div>
 
     <div class="form-group" *ngIf="currentUser !== undefined">
       <label for="testTextLength" [translate]="'PAGES.CONFIGURATION.LABELS.TEST_WORD_COUNT'"></label>
-      <input type="number" class="form-control" id="testTextLength" name="testTextLength" [(ngModel)]="currentUser.configuration.wordCount">
+      <input type="number" class="form-control" id="testTextLength" name="testTextLength" [(ngModel)]="currentUser.configuration.wordCount" required>
     </div>
 
-    <button type="submit" class="btn btn-primary" [translate]="'PAGES.CONFIGURATION.BTN_SAVE'"></button>
+    <button type="submit" class="btn btn-primary" [translate]="'PAGES.CONFIGURATION.BTN_SAVE'" [disabled]="saving || !configurationForm.form.valid" ></button>
   </form>
 </div>
