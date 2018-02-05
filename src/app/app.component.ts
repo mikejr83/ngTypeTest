@@ -16,9 +16,6 @@ export class AppComponent {
 
     translateService.setDefaultLang("en");
 
-    logger.debug("Setting the display culture to " + electronService.configuration.culture);
-    translateService.use(electronService.configuration.culture);
-
     if (electronService.isElectron()) {
       this.logger.debug("Mode electron");
       // Check if electron is correctly injected (see externals in webpack.config.js)
@@ -28,10 +25,5 @@ export class AppComponent {
     } else {
       this.logger.debug("Mode web");
     }
-  }
-
-  public changeCurrentCulture(culture: string) {
-    this.logger.debug("Changing the display culture from " + this.translateService.currentLang + " to " + culture);
-    this.translateService.use(culture);
   }
 }

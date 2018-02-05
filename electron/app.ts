@@ -1,6 +1,6 @@
 import { app, BrowserWindow, ipcMain, Menu, screen } from "electron";
-import path = require("path");
-import url = require("url");
+import * as path from "path";
+import * as url from "url";
 import * as yargs from "yargs";
 
 import config from "./configuration";

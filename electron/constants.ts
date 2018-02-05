@@ -26,12 +26,13 @@ export const EVENTS = {
 };
 
 export const CONFIGURATION = {
-  CULTURE: "culture",
   LAST_USERNAME: "lastUsername",
   LOG_LEVEL: "logLevel",
-  REMOVE_NON_ASCII_CHAR: "removeNonAsciiChar",
   SERVE: "serve",
   SHOW_DEBUG_TOOLS: "showDebugTools",
-  WIKIPEDIA_URL: "wikipediaUrl",
-  WORD_COUNT: "wordCount"
 };
+
+// CULTURE: "culture",
+// REMOVE_NON_ASCII_CHAR: "removeNonAsciiChar",
+// WIKIPEDIA_URL: "wikipediaUrl",
+//   WORD_COUNT: "wordCount"

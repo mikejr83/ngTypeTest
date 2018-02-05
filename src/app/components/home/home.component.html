@@ -21,6 +21,6 @@
         <a routerLink="/typing-test" class="btn btn-lg btn-primary" [translate]="'PAGES.HOME.BTN_TAKE_TEST'">Take Typing Test</a>
       </div>
     </div>
-    <user-editor *ngIf="!userService.user"></user-editor>
+    <user-logon *ngIf="!userService.user"></user-logon>
   </div>
 </div>

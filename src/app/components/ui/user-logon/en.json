@@ -9,11 +9,6 @@
       "TITLE": "Welcome to ngType Tester"
     },
     "CONFIGURATION": {
-      "BTN_SAVE": "Save",
-      "HEADINGS": {
-        "GENERAL": "General User Preferences",
-        "USER_INFO": "Your User Information"
-      },
       "LABELS": {
         "LANGUAGE": "Language",
         "REMOVE_NONASCII": "Remove Non-ASCII Characters",
@@ -21,11 +16,12 @@
         "WIKIPEDIA_URL": "Wikipedia URL"
       },
       "REMOVE_ASCII_INFO": "Removing non-ASCII characters is generally advised for English speaking users. For users attempting this test where Unicode characters are used in their supported language you should disable this functionality.",
+      "USER_INFO_TITLE": "Your User Information",
       "WIKIPEDIA_INFO": "This URL is used to pull random text for your test. It can be adjusted as needed."
     }
   },
   "COMPONENTS": {
-    "USER_LOGON": {
+    "USER_EDITOR": {
       "BTN_UPDATE_INFO": "Update My Info",
       "BTN_SIGNUP": "Sign-Up",
       "CANT_FIND_EMAIL": "Unable to find a user with this email!",

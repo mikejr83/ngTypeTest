@@ -7,7 +7,7 @@ import * as childProcess from "child_process";
 import { ipcRenderer } from "electron";
 
 import config from "../../../electron/configuration";
-import { Configuration } from "../../../electron/configuration/configuration";
+import { ElectronConfiguration } from "../../../electron/configuration/electron";
 import { EVENTS } from "../../../electron/constants";
 import { environment } from "../../environments";
 
@@ -16,7 +16,7 @@ export class ElectronService {
 
   ipcRenderer: typeof ipcRenderer;
   childProcess: typeof childProcess;
-  configuration: Configuration;
+  configuration: ElectronConfiguration;
 
   constructor() {
     this.configuration = config;

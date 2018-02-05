@@ -1,5 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { AfterViewInit, Component, OnInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
+import * as _ from "lodash";
+
+import { defaultConfiguration } from "../../../../../electron/configuration/user";
+import { IUser } from "../../../../../electron/user/user";
 
 import { ElectronService } from "app/providers/electron.service";
 import { LoggerService } from "app/providers/logging/logger.service";
@@ -22,20 +26,31 @@ export class ConfigurationComponent implements OnInit {
       cultureCode: "es"
     }
   ];
-  public currentCulture;
+  public currentUser: IUser;
 
-  constructor(private loggerService:LoggerService, private translateService: TranslateService, public electronService: ElectronService, public userService: UserService) {
-    this.currentCulture = this.electronService.configuration.culture;
-    loggerService.debug("Current culture:", this.currentCulture);
-   }
+  constructor(private loggerService: LoggerService, private translateService: TranslateService, public electronService: ElectronService, public userService: UserService) {
+  }
 
   ngOnInit() {
+    if (this.userService.user) {
+      this.loggerService.debug("current user from service", this.userService.user);
+      this.currentUser = _.cloneDeep(this.userService.user);
+    } else if (this.electronService.configuration.lastUsername) {
+      this.loggerService.debug("The user service doesn't have a user. Trying to get it from the last username.");
+      this.userService.loadUser(this.electronService.configuration.lastUsername).then((user) => {
+        this.currentUser = _.cloneDeep(user);
+        this.loggerService.debug("current user from direct load call.", this.currentUser);
+      });
+    }
+  }
+
+  public onSubmit() {
+    this.userService.editUser(this.currentUser);
   }
 
   public languageChanged() {
-    // this.loggerService.debug("The culture changed in the editor.", this.currentCulture);
-    // this.electronService.configuration.culture = this.currentCulture;
-    this.translateService.use(this.electronService.configuration.culture);
+    this.loggerService.debug("The language selection changed. Going to update the UI culture.");
+    this.translateService.use(this.currentUser.configuration.culture);
   }
 }
 

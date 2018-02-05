@@ -34,6 +34,16 @@ async function saveHandler(event, user: IUser) {
 
   const result = await saveUser(user);
   logger.debug("Save user result: ", result);
+
+  let loadedUser: IUser;
+
+  try {
+    loadedUser = await loadUser(user.username);
+  } catch (e) {
+    logger.error("An error occurred while trying to load the user.", e);
+  }
+
+  onUserLoaded(loadedUser);
 }
 
 async function updateHandler(event, currentUserInfo: IUser, newUserInfo: IUser) {

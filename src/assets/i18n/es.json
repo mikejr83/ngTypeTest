@@ -16,7 +16,7 @@
     }
   },
   "COMPONENTS": {
-    "USER_EDITOR": {
+    "USER_LOGON": {
       "BTN_UPDATE_INFO": "Actualizar mi información",
       "BTN_SIGNUP": "Regístrate",
       "CANT_FIND_EMAIL": "¡No se puede encontrar un usuario con este correo electrónico!",

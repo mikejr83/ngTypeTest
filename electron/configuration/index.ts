@@ -1,5 +1,5 @@
-import { Configuration, defaultConfiguration, IConfiguration } from "./configuration";
+import { ElectronConfiguration } from "./electron";
 
-const configuration: Configuration = new Configuration();
+const configuration: ElectronConfiguration = new ElectronConfiguration();
 
 export default configuration;

@@ -21,6 +21,7 @@ import { TypingTestComponent } from "app/components/pages/typing-test/typing-tes
 import { MenuComponent } from "app/components/ui/menu/menu.component";
 import { TesterComponent } from "app/components/ui/tester/tester.component";
 import { UserEditorComponent } from "app/components/ui/user-editor/user-editor.component";
+import { UserLogonComponent } from "app/components/ui/user-logon/user-logon.component";
 
 // Directives
 import { WebviewDirective } from "app/directives/webview.directive";
@@ -47,6 +48,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TesterComponent,
     TypingTestComponent,
     UserEditorComponent,
+    UserLogonComponent,
     WebviewDirective
   ],
   imports: [

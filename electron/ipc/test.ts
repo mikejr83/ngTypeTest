@@ -7,7 +7,7 @@ import * as rp from "request-promise-native";
 
 import { findWordCount } from "../../util/wordCount";
 import App from "../app";
-import config from "../configuration";
+import { IUserConfiguration } from "../configuration/user";
 import { EVENTS } from "../constants";
 import logger from "../logging";
 
@@ -23,7 +23,7 @@ export function onWikipediaTextLoaded(paragraphs: string[]) {
   App.AppWindow.webContents.send(EVENTS.MAIN.TEST.ON_WIKIPEDIA_LOADED, paragraphs);
 }
 
-async function loadWikipediaHandler() {
+async function loadWikipediaHandler(config: IUserConfiguration) {
   const pageContent = await rp.get(config.wikipediaUrl);
 
   const dom = new jsdom.JSDOM(pageContent);
@@ -56,6 +56,7 @@ async function loadWikipediaHandler() {
       text = ASCIIFolder.fold(text);
     }
 
+    // Get the word count for this paragraph.
     const wordCount = findWordCount(text);
 
     logger.silly("Current paragraph word count:", wordCount);
