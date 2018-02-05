@@ -1,0 +1,10 @@
+<div>
+  <div>
+    <em *ngIf="!testReady">Press start to get your test text...</em>
+    <div *ngIf="testReady" [innerHtml]="testService.testHtml">
+
+    </div>
+  </div>
+  <textarea></textarea>
+  <button type="button" class="btn btn-primary" (click)="getTestText()">Get Test</button>
+</div>

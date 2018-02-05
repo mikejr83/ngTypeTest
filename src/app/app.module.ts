@@ -19,7 +19,9 @@ import { HomeComponent } from "app/components/home/home.component";
 import { ConfigurationComponent } from "app/components/pages/configuration/configuration.component";
 import { TypingTestComponent } from "app/components/pages/typing-test/typing-test.component";
 import { MenuComponent } from "app/components/ui/menu/menu.component";
+import { TesterComponent } from "app/components/ui/tester/tester.component";
 import { UserEditorComponent } from "app/components/ui/user-editor/user-editor.component";
+
 // Directives
 import { WebviewDirective } from "app/directives/webview.directive";
 
@@ -27,6 +29,7 @@ import { WebviewDirective } from "app/directives/webview.directive";
 import { ElectronService } from "app/providers/electron.service";
 import { ConsoleLoggerService } from "app/providers/logging/console-logger.service";
 import { LoggerService } from "app/providers/logging/logger.service";
+import { TestService } from "app/providers/test.service";
 import { UserService } from "app/providers/user.service";
 
 
@@ -41,6 +44,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ConfigurationComponent,
     HomeComponent,
     MenuComponent,
+    TesterComponent,
     TypingTestComponent,
     UserEditorComponent,
     WebviewDirective
@@ -60,6 +64,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [
     ElectronService,
+    TestService,
     UserService,
     {
       provide: LoggerService,

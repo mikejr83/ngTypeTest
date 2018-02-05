@@ -4,6 +4,9 @@ export const EVENTS = {
    */
   MAIN: {
     CONFIGURATION_UPDATED: "CONFIGURATION_UPDATED",
+    TEST: {
+      ON_WIKIPEDIA_LOADED: "MAIN_TEST_TEXT_ON_WIKIPEDIA_LOADED"
+    },
     USER: {
       LOAD: "MAIN_USER_LOAD",
       ONLOAD: "MAIN_USER_ONLOAD",
@@ -16,7 +19,9 @@ export const EVENTS = {
    * EVENT FIRED AND HANDLED ON THE UI PROCESS
    */
   RENDERER: {
-
+    TEST: {
+      LOAD_WIKIPEDIA: "MAIN_TEST_TEXT_LOAD_WIKIPEDIA"
+    }
   }
 };
 
@@ -24,6 +29,9 @@ export const CONFIGURATION = {
   CULTURE: "culture",
   LAST_USERNAME: "lastUsername",
   LOG_LEVEL: "logLevel",
+  REMOVE_NON_ASCII_CHAR: "removeNonAsciiChar",
   SERVE: "serve",
-  SHOW_DEBUG_TOOLS: "showDebugTools"
-}
+  SHOW_DEBUG_TOOLS: "showDebugTools",
+  WIKIPEDIA_URL: "wikipediaUrl",
+  WORD_COUNT: "wordCount"
+};

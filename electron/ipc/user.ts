@@ -5,7 +5,6 @@ import { EVENTS } from "../constants";
 import logger from "../logging";
 import { loadUser, saveUser, updateUser } from "../repository/user";
 import { IUser } from "../user/user";
-import { EVENT_MANAGER_PLUGINS } from "@angular/platform-browser/src/dom/events/event_manager";
 
 export function registerIpcListeners() {
   logger.silly("GOT HERE!");
@@ -36,8 +35,6 @@ async function saveHandler(event, user: IUser) {
   const result = await saveUser(user);
   logger.debug("Save user result: ", result);
 }
-
-
 
 async function updateHandler(event, currentUserInfo: IUser, newUserInfo: IUser) {
   logger.debug("Handling " + EVENTS.MAIN.USER.UPDATE + " IPC event!", currentUserInfo, newUserInfo);
