@@ -1,10 +1,10 @@
 <div class="container">
   <div class="wrapper">
     <div class="test-text-container">
-      <div *ngIf="testService.testHtml" [innerHtml]="testService.testHtml">
+      <div *ngIf="testService.testStatus !== 1" [innerHtml]="testService.testHtml">
 
       </div>
-      <div *ngIf="!testService.testHtml">
+      <div *ngIf="testService.testStatus === 1">
         <p>
           To start the test press the button below. Your typing test text will then appear. The timer will be begin when you start
           typing.
@@ -15,26 +15,59 @@
 
     </div>
     <div class="test-user-input-container">
-      <p *ngIf="testReady && !testService.testHasStarted && !testAborted" class="text-muted">
+      <p *ngIf="testService.testStatus === 2" class="text-muted">
         Your test is ready to begin. When you start typing the timer will begin.
       </p>
-      <p *ngIf="testReady">
-        Test text taken from <a href="javascript:void(0)" (click)="navigateToTextLocation()">{{testService.testTextInfo.locationDescription}}</a>
-      </p>
-      <div class="form-group">
-        <textarea class="form-control" [disabled]="!testReady" [readonly]="testAborted" name="typedText" appTextarea [(ngModel)]="testService.typedText" #typedText >
+      <small *ngIf="testService.testStatus !== 1">
+        Test text taken from
+        <a href="javascript:void(0)" (click)="navigateToTextLocation()">{{testService.testTextInfo.locationDescription}}</a>
+      </small>
+      <div class="form-group" mwlTextInputHighlightContainer>
+        <textarea [rows]="6" class="form-control" [readonly]="testService.testStatus === 1 || testService.testStatus === 4 || testService.testStatus === 5"
+          name="typedText" appTextarea mwlTextInputElement [(ngModel)]="testService.typedText" #typedText>
 
         </textarea>
+        <mwl-text-input-highlight [tags]="testService.badWords" [textInputElement]="typedText">
+        </mwl-text-input-highlight>
       </div>
+      <p *ngIf="testService.testStatus === 5">
+        The test has completed.
+      </p>
 
-      <button type="button" class="btn btn-default" *ngIf="testReady && !testAborted" (click)="abortTest()">Abort Test</button>
-      <button type="button" class="btn btn-success" *ngIf="testAborted" (click)="restartTest()">Restart</button>
-      <button type="button" class="btn btn-primary" *ngIf="testAborted" (click)="newTest()">New Test</button>
+      <div class="d-flex">
+        <button type="button" class="btn btn-default mr-2" *ngIf="testService.testStatus === 3" (click)="abortTest()">Stop</button>
+        <button type="button" class="btn btn-success mr-2" *ngIf="testService.testStatus === 4 || testService.testStatus === 5" (click)="restartTest()">Restart</button>
+        <button type="button" class="btn btn-primary mr-2" *ngIf="testService.testStatus === 4 || testService.testStatus === 5" (click)="newTest()">New Test</button>
+      </div>
     </div>
 
     <div class="test-status-container">
       <h2>Stats</h2>
-      {{testService.formattedDuration}}
+      <div>
+        <label>Timer</label>
+        {{testService.formattedDuration}}
+      </div>
+      <div>
+        <label>WPM</label>
+        {{testService.wpm | number:'1.0-0'}}
+      </div>
+      <div>
+        <label>Words Typed</label>
+        {{testService.wordsTyped.length}}
+      </div>
+      <div>
+        <label>Mis-typed Words</label>
+        {{testService.incorrect}}
+      </div>
+      <div>
+        <label>Error Percentage</label>
+        {{testService.errorPercentage | percent:'1.1-1' }}
+      </div>
+      <div *ngIf="testService.testStatus === 5">
+        <p>
+          Completed!
+        </p>
+      </div>
     </div>
 
   </div>

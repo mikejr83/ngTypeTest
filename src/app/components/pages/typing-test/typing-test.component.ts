@@ -16,7 +16,7 @@ import { UserService } from "app/providers/user.service";
 export class TypingTestComponent implements OnInit {
   @ViewChild("typedText") typedText: ElementRef;
 
-  public testReady = false;
+  public paragraphs = [];
   public testAborted = false;
 
   constructor(public electronService: ElectronService, public testService: TestService, public userService: UserService) { }
@@ -25,10 +25,7 @@ export class TypingTestComponent implements OnInit {
   }
 
   public async getTestText() {
-    const paragraphs = await this.testService.loadTestText();
-
-    // The test is ready
-    this.testReady = true;
+    this.paragraphs = await this.testService.loadTestText();
 
     // Grab the text area and then set the focus to it.
     const typedTextElement = jquery(this.typedText.nativeElement);
@@ -37,7 +34,7 @@ export class TypingTestComponent implements OnInit {
 
   public abortTest() {
     this.testAborted = true;
-    this.testService.stopTest();
+    this.testService.stopTest(true, new Date());
   }
 
   public async newTest() {
@@ -47,8 +44,6 @@ export class TypingTestComponent implements OnInit {
   }
 
   public restartTest() {
-    this.testAborted = false;
-
     //
     this.testService.resetTest();
 

@@ -10,12 +10,15 @@ import App from "../app";
 import { IUserConfiguration } from "../configuration/user";
 import { EVENTS } from "../constants";
 import logger from "../logging";
+import { saveTestResult } from "../repository/testResult";
+import { ITestResult } from "../test/result";
 import { ITestText, TestTextLocation } from "../test/testText";
 
 export function registerIpcListeners() {
   logger.silly("GOT HERE!");
 
   ipcMain.on(EVENTS.RENDERER.TEST.LOAD_WIKIPEDIA, loadWikipediaHandler);
+  ipcMain.on(EVENTS.RENDERER.TEST.LOG, logTestHandler)
 }
 
 export function onWikipediaTextLoaded(testText: ITestText) {
@@ -102,4 +105,14 @@ async function loadWikipediaHandler(event, config: IUserConfiguration) {
 
   // Fire off that we've got text to use.
   onWikipediaTextLoaded(testTextResult);
+}
+
+async function logTestHandler(event, result: ITestResult) {
+  logger.debug("Handling IPC " + EVENTS.RENDERER.TEST.LOG);
+
+  try {
+    saveTestResult(result);
+  } catch (e) {
+    logger.error("Error trying to save the test result!", e);
+  }
 }

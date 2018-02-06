@@ -20,7 +20,8 @@ export const EVENTS = {
    */
   RENDERER: {
     TEST: {
-      LOAD_WIKIPEDIA: "MAIN_TEST_TEXT_LOAD_WIKIPEDIA"
+      LOAD_WIKIPEDIA: "MAIN_TEST_TEXT_LOAD_WIKIPEDIA",
+      LOG: "MAIN_TEST_LOG"
     }
   }
 };

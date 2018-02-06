@@ -11,6 +11,8 @@ import { BrowserModule } from "@angular/platform-browser";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 
+import { TextInputHighlightModule } from "angular-text-input-highlight";
+
 import { AppRoutingModule } from "./app-routing.module";
 
 // Components
@@ -57,6 +59,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
+    TextInputHighlightModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
