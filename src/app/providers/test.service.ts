@@ -11,12 +11,12 @@ import { UserService } from "app/providers/user.service";
 
 import { defaultConfiguration } from "../../../electron/configuration/user";
 import { EVENTS } from "../../../electron/constants"
-
-
+import { ITestText } from "../../../electron/test/testText";
+import { splitTextIntoWords } from "../../../util/wordCount";
 
 @Injectable()
 export class TestService {
-  public paragraphs: string[];
+  public testTextInfo: ITestText;
   public formattedDuration: string;
   public testHtml: string = "";
   public typedText: string;
@@ -24,6 +24,8 @@ export class TestService {
   public testStartTime: moment.Moment;
 
   private intervalRef?: number;
+  private testWords: string[];
+  private typedWords: string[] = [];
 
   constructor(private loggerService: LoggerService, private userService: UserService) {
     momentDurationFormatSetup(moment);
@@ -42,14 +44,20 @@ export class TestService {
 
     return new Promise<string[]>((resolve, reject) => {
       // Wait for the resoponse for the wikipedia text.
-      ipcRenderer.once(EVENTS.MAIN.TEST.ON_WIKIPEDIA_LOADED, (event, paragraphs: string[]) => {
+      ipcRenderer.once(EVENTS.MAIN.TEST.ON_WIKIPEDIA_LOADED, (event, testText: ITestText) => {
         this.loggerService.debug("Got wikipedia test text.");
-        this.paragraphs = paragraphs;
-        _.forEach(paragraphs, (paragraph) => {
+
+        this.testTextInfo = testText;
+        this.testWords = [];
+
+        _.forEach(testText.paragraphs, (paragraph) => {
           this.testHtml += "<p>" + paragraph + "</p>\n";
+
+          const paragraphWords = splitTextIntoWords(paragraph);
+          this.testWords.push.apply(this.testWords, paragraphWords);
         });
 
-        resolve(paragraphs);
+        resolve(testText.paragraphs);
       });
     });
   }

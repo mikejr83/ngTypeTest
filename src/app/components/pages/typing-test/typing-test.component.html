@@ -18,6 +18,9 @@
       <p *ngIf="testReady && !testService.testHasStarted && !testAborted" class="text-muted">
         Your test is ready to begin. When you start typing the timer will begin.
       </p>
+      <p *ngIf="testReady">
+        Test text taken from <a href="javascript:void(0)" (click)="navigateToTextLocation()">{{testService.testTextInfo.locationDescription}}</a>
+      </p>
       <div class="form-group">
         <textarea class="form-control" [disabled]="!testReady" [readonly]="testAborted" name="typedText" appTextarea [(ngModel)]="testService.typedText" #typedText >
 

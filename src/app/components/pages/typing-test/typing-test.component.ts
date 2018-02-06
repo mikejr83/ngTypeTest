@@ -3,6 +3,7 @@ import * as jquery from "jquery";
 
 import { splitTextIntoWords } from "app/../../util/wordCount";
 
+import { ElectronService } from "app/providers/electron.service";
 import { TestService } from "app/providers/test.service";
 import { UserService } from "app/providers/user.service";
 
@@ -18,7 +19,7 @@ export class TypingTestComponent implements OnInit {
   public testReady = false;
   public testAborted = false;
 
-  constructor(public testService: TestService, public userService: UserService) { }
+  constructor(public electronService: ElectronService, public testService: TestService, public userService: UserService) { }
 
   ngOnInit() {
   }
@@ -54,5 +55,11 @@ export class TypingTestComponent implements OnInit {
     // Grab the text area and then set the focus to it.
     const typedTextElement = jquery(this.typedText.nativeElement);
     setTimeout(() => typedTextElement.focus(), 0);
+  }
+
+  public navigateToTextLocation() {
+    if (this.electronService.isElectron()) {
+      this.electronService.openExternal(this.testService.testTextInfo.locationDescription);
+    }
   }
 }

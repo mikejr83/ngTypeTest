@@ -4,7 +4,7 @@ import { OnDestroy } from "@angular/core/src/metadata/lifecycle_hooks";
 // If you import a module but never use any of the imported values other than as TypeScript types,
 // the resulting javascript file will look as if you never imported the module at all.
 import * as childProcess from "child_process";
-import { ipcRenderer } from "electron";
+import { ipcRenderer, OpenExternalOptions, shell } from "electron";
 
 import config from "../../../electron/configuration";
 import { ElectronConfiguration } from "../../../electron/configuration/electron";
@@ -30,5 +30,13 @@ export class ElectronService {
 
   isElectron = () => {
     return window && window.process && window.process.type;
+  }
+
+  public openExternal(url: string, options?: OpenExternalOptions, callback?: (error: Error) => void): boolean {
+    if (this.isElectron()) {
+      return shell.openExternal(url);
+    } else {
+      return false;
+    }
   }
 }

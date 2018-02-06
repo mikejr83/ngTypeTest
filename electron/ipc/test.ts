@@ -10,6 +10,7 @@ import App from "../app";
 import { IUserConfiguration } from "../configuration/user";
 import { EVENTS } from "../constants";
 import logger from "../logging";
+import { ITestText, TestTextLocation } from "../test/testText";
 
 export function registerIpcListeners() {
   logger.silly("GOT HERE!");
@@ -17,18 +18,21 @@ export function registerIpcListeners() {
   ipcMain.on(EVENTS.RENDERER.TEST.LOAD_WIKIPEDIA, loadWikipediaHandler);
 }
 
-export function onWikipediaTextLoaded(paragraphs: string[]) {
+export function onWikipediaTextLoaded(testText: ITestText) {
   logger.debug("Firing IPC event " + EVENTS.MAIN.TEST.ON_WIKIPEDIA_LOADED);
 
-  App.AppWindow.webContents.send(EVENTS.MAIN.TEST.ON_WIKIPEDIA_LOADED, paragraphs);
+  App.AppWindow.webContents.send(EVENTS.MAIN.TEST.ON_WIKIPEDIA_LOADED, testText);
 }
 
 async function loadWikipediaHandler(event, config: IUserConfiguration) {
   // Get the page content from the wikipedia url.
-  const pageContent = await rp.get(config.wikipediaUrl);
+  const pageContentResponse = await rp.get({
+    resolveWithFullResponse: true,
+    uri: config.wikipediaUrl
+  });
 
   // Use jsdom to mock up a dom for the returned page.
-  const dom = new jsdom.JSDOM(pageContent);
+  const dom = new jsdom.JSDOM(pageContentResponse.body);
 
   let $: JQueryStatic;
 
@@ -90,6 +94,12 @@ async function loadWikipediaHandler(event, config: IUserConfiguration) {
 
   logger.silly("Text to use:", paragraphsToUse);
 
+  const testTextResult: ITestText = {
+    locationDescription: pageContentResponse.request.href,
+    paragraphs: paragraphsToUse,
+    textLocationType: TestTextLocation.Wikipedia
+  };
+
   // Fire off that we've got text to use.
-  onWikipediaTextLoaded(paragraphsToUse);
+  onWikipediaTextLoaded(testTextResult);
 }
