@@ -1,12 +1,9 @@
+@import "../../../../variables";
 .wrapper {
   display: grid;
   grid-template-columns: auto 300px;
   grid-gap: 1rem;
   grid-auto-rows: minmax(3rem, auto);
-
-  // > div {
-  //   outline: solid 1px red;
-  // }
 }
 
 .results-container {
@@ -19,3 +16,25 @@
   grid-row: 1;
 }
 
+.card {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    &.card-title {
+      color: $gray-900;
+    }
+    color: $gray-700;
+  }
+  color: $gray-900;
+
+  label {
+    display: initial;
+  }
+
+  .badge {
+    padding: map-get($spacers, 2) map-get($spacers, 3);
+  }
+}

@@ -1,58 +1,61 @@
 <div class="container">
   <div class="wrapper">
     <div class="results-container">
-      <h2>Test History</h2>
-      <div *ngFor="let testResult of results">
-        <h3>Test taken
-          <small>{{testResult.start | date:'short'}}</small>
-        </h3>
-        <p *ngFor="let para of testResult.info.paragraphs">
-          {{para}}
-        </p>
-        <small>
-          <a href="javascript:void(0)" (click)="navigateToTextLocation(testResult)">{{testResult.info.locationDescription}}</a>
-        </small>
-        <div class="form-group" mwlTextInputHighlightContainer>
-          <textarea [rows]="6" class="form-control" readonly name="typedText" appTextarea mwlTextInputElement [(ngModel)]="testResult.enteredText"
-            #typedText>
+      <h2 class="mb-3">Test History</h2>
+      <div *ngFor="let testResult of results" class="card mb-2">
+        <div class="card-body">
+          <h5 class="card-title">{{testResult.start | date:'short'}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">
+            <a href="javascript:void(0)" (click)="navigateToTextLocation(testResult)">{{testResult.info.locationDescription}}</a>
+          </h6>
+          <p *ngFor="let para of testResult.info.paragraphs" class="card-text">
+            {{para}}
+          </p>
+          <div class="form-group" mwlTextInputHighlightContainer>
+            <textarea [rows]="6" class="form-control" readonly name="typedText" appTextarea mwlTextInputElement [(ngModel)]="testResult.enteredText"
+              #typedText>
 
-          </textarea>
-          <mwl-text-input-highlight [tags]="testResult.badWords" [textInputElement]="typedText">
-          </mwl-text-input-highlight>
-        </div>
-        <h2>Stats</h2>
-        <div>
-          <label>Time Taken</label>
-          {{testResult.duration}}
-        </div>
-        <div>
-          <label>WPM</label>
-          {{testResult.wpm | number:'1.0-0'}}
-        </div>
-        <div>
-          <label>Words Typed</label>
-          {{testResult.numberOfWords}}
-        </div>
-        <div>
-          <label>Mis-typed Words</label>
-          {{testResult.badWords.length}}
-        </div>
-        <div>
-          <label>Error Percentage</label>
-          {{(testResult.badWords.length / testResult.numberOfWords) | percent:'1.1-1' }}
+            </textarea>
+            <mwl-text-input-highlight [tags]="testResult.badWords" [textInputElement]="typedText">
+            </mwl-text-input-highlight>
+          </div>
+          <h6>Stats</h6>
+          <span class="badge badge-secondary mr-2">
+            <label>Time Taken</label>
+            {{testResult.duration}}
+          </span>
+          <span class="badge badge-secondary mr-2">
+            <label>WPM</label>
+            {{testResult.wpm | number:'1.0-0'}}
+          </span>
+          <span class="badge badge-secondary mr-2">
+            <label>Words Typed</label>
+            {{testResult.numberOfWords}}
+          </span>
+          <span class="badge badge-secondary mr-2">
+            <label>Mis-typed Words</label>
+            {{testResult.badWords.length}}
+          </span>
+          <span class="badge badge-secondary mr-2">
+            <label>Error Percentage</label>
+            {{(testResult.badWords.length / testResult.numberOfWords) | percent:'1.1-1' }}
+          </span>
         </div>
       </div>
     </div>
     <div class="results-stats">
-      <h2>Overall</h2>
-      <div>
-        <label>Max WPM</label>
-        {{maxWpm | number:'1.0-0'}}
+      <h2 class="mb-3">Overall</h2>
+
+      <div class="card">
+        <div class="card-body">
+          <h5>Max WPM</h5>
+          {{maxWpm | number:'1.0-0'}}
+          <h5 class="mt-3">Average WPM</h5>
+          {{averageWpm | number:'1.0-0'}}
+        </div>
       </div>
-      <div>
-        <label>Average WPM</label>
-        {{averageWpm | number:'1.0-0'}}
-      </div>
+
+
     </div>
   </div>
 </div>

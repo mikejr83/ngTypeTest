@@ -1,36 +1,18 @@
-<nav class="navbar navbar-light navbar-static bg-faded" role="navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-faded" role="navigation">
   <a class="navbar-brand" href="#">ngType Tester</a>
 
-  <ul class="nav navbar-nav">
+  <ul class="nav navbar-nav" *ngIf="userService.user !== undefined">
     <li class="nav-item">
-      <a class="nav-link" routerLink="" [translate]="'NAVIGATION.HOME'"></a>
+      <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" [translate]="'NAVIGATION.HOME'"></a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/typing-test" routerLinkActive="active" class="nav-link" [translate]="'NAVIGATION.TEST'"></a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/results" routerLinkActive="active" class="nav-link" [translate]="'NAVIGATION.RESULTS'"></a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/configuration" routerLinkActive="active" class="nav-link" [translate]="'NAVIGATION.CONFIGURATION'"></a>
     </li>
   </ul>
-
-  <!-- insert more nav-items if you so choose -->
-  <button class="navbar-toggler ml-auto" id="navbarSideButton" type="button" (click)="toggle()">
-    <span class="navbar-toggler-icon small"></span>
-  </button>
-
-  <div class="navbar-side" [ngClass]="{ 'reveal': show }">
-    <button class="navbar-toggler close" (click)="toggle()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <ul id="navbarSide" *ngIf="userService.user === undefined">
-      <li class="navbar-side-item">
-        <a routerLink="" class="side-link" [translate]="'NAVIGATION.SIGNUP'">Signup</a>
-      </li>
-    </ul>
-    <ul *ngIf="userService.user !== undefined">
-      <li class="navbar-side-item">
-        <a routerLink="" class="side-link" (click)="toggle(); logout();" [translate]="'NAVIGATION.LOGOUT'"></a>
-      </li>
-      <li class="navbar-side-item">
-          <a routerLink="/results" class="side-link" (click)="toggle();" [translate]="'NAVIGATION.RESULTS'"></a>
-        </li>
-      <li class="navbar-side-item">
-        <a routerLink="/configuration" class="side-link" (click)="toggle();" [translate]="'NAVIGATION.CONFIGURATION'"></a>
-      </li>
-    </ul>
-  </div>
 </nav>
