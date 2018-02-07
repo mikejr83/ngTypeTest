@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="wrapper">
+  <div class="wrapper" *ngIf="results.length > 0">
     <div class="results-container">
       <h2 class="mb-3">Test History</h2>
       <div *ngFor="let testResult of results" class="card mb-2">
@@ -54,8 +54,13 @@
           {{averageWpm | number:'1.0-0'}}
         </div>
       </div>
-
-
+    </div>
+  </div>
+  <div *ngIf="results.length === 0" class="jumbotron jumbotron-fluid rounded bg-warning">
+    <div class="container">
+      <h1>No Results!</h1>
+      <p class="lead">Start taking tests to track your results.</p>
+      <a routerLink="/typing-test" class="btn btn-success">Take Test</a>
     </div>
   </div>
 </div>
