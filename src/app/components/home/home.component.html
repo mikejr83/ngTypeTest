@@ -1,26 +1,25 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md">
-      <h1 *ngIf="!userService.user">
-        <span [translate]="'PAGES.HOME.TITLE'"></span>
-        <small [translate]="'PAGES.HOME.GREETING_3'">
-        </small>
-      </h1>
-      <h1 *ngIf="userService.user">
-        <span [translate]="'PAGES.HOME.TITLE'"></span>
-        <small [translate]="'PAGES.HOME.GREETING'" [translateParams]="{name: userService.user.name}">
-        </small>
-      </h1>
+  <div class="jumbotron jumbotron-fluid rounded">
+    <div class="container">
+      <h1 [translate]="'PAGES.HOME.TITLE'"></h1>
+      <p class="lead">Tying speed and acuracy test using Wikipedia articles!</p>
     </div>
   </div>
 
-  <div class="row justify-content-center">
-    <div *ngIf="userService.user" style="text-align:center;">
-      <span [translate]="'PAGES.HOME.GREETING_2'" [translateParams]="{name: userService.user.name}"></span>
-      <div>
-        <a routerLink="/typing-test" class="btn btn-lg btn-primary" [translate]="'PAGES.HOME.BTN_TAKE_TEST'">Take Typing Test</a>
-      </div>
+  <div class="bg-light rounded p-2" *ngIf="userService.user">
+    <h3 [translate]="'PAGES.HOME.GREETING'" [translateParams]="{name: userService.user.name}">
+    </h3>
+
+    <p class="mt-4 mb-4">
+      You can pick up where you left off or
+      <a routerLink="/results">Look at Previous Results</a>
+    </p>
+    <div class="text-center">
+      <a routerLink="/typing-test" class="btn btn-lg btn-primary" [translate]="'PAGES.HOME.BTN_TAKE_TEST'">Take Typing Test</a>
     </div>
-    <user-logon *ngIf="!userService.user"></user-logon>
+  </div>
+
+  <div class="user-login-container bg-light rounded p-2" *ngIf="!userService.user">
+    <user-logon></user-logon>
   </div>
 </div>
