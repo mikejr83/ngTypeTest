@@ -16,16 +16,21 @@
     <button class="navbar-toggler close" (click)="toggle()">
       <span aria-hidden="true">&times;</span>
     </button>
-    <ul id="navbarSide">
-      <li class="navbar-side-item" *ngIf="userService.user === undefined">
+    <ul id="navbarSide" *ngIf="userService.user === undefined">
+      <li class="navbar-side-item">
         <a routerLink="" class="side-link" [translate]="'NAVIGATION.SIGNUP'">Signup</a>
       </li>
-      <li class="navbar-side-item" *ngIf="userService.user !== undefined">
+    </ul>
+    <ul *ngIf="userService.user !== undefined">
+      <li class="navbar-side-item">
         <a routerLink="" class="side-link" (click)="toggle(); logout();" [translate]="'NAVIGATION.LOGOUT'"></a>
       </li>
       <li class="navbar-side-item">
-          <a routerLink="/configuration" class="side-link" (click)="toggle();" [translate]="'NAVIGATION.CONFIGURATION'"></a>
+          <a routerLink="/results" class="side-link" (click)="toggle();" [translate]="'NAVIGATION.RESULTS'"></a>
         </li>
+      <li class="navbar-side-item">
+        <a routerLink="/configuration" class="side-link" (click)="toggle();" [translate]="'NAVIGATION.CONFIGURATION'"></a>
+      </li>
     </ul>
   </div>
 </nav>

@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="wrapper">
+    <div class="results-container">
+      <h2>Test History</h2>
+      <div *ngFor="let testResult of results">
+        <h3>Test taken
+          <small>{{testResult.start | date:'short'}}</small>
+        </h3>
+        <p *ngFor="let para of testResult.info.paragraphs">
+          {{para}}
+        </p>
+        <small>
+          <a href="javascript:void(0)" (click)="navigateToTextLocation(testResult)">{{testResult.info.locationDescription}}</a>
+        </small>
+        <div class="form-group" mwlTextInputHighlightContainer>
+          <textarea [rows]="6" class="form-control" readonly name="typedText" appTextarea mwlTextInputElement [(ngModel)]="testResult.enteredText"
+            #typedText>
+
+          </textarea>
+          <mwl-text-input-highlight [tags]="testResult.badWords" [textInputElement]="typedText">
+          </mwl-text-input-highlight>
+        </div>
+        <h2>Stats</h2>
+        <div>
+          <label>Time Taken</label>
+          {{testResult.duration}}
+        </div>
+        <div>
+          <label>WPM</label>
+          {{testResult.wpm | number:'1.0-0'}}
+        </div>
+        <div>
+          <label>Words Typed</label>
+          {{testResult.numberOfWords}}
+        </div>
+        <div>
+          <label>Mis-typed Words</label>
+          {{testResult.badWords.length}}
+        </div>
+        <div>
+          <label>Error Percentage</label>
+          {{(testResult.badWords.length / testResult.numberOfWords) | percent:'1.1-1' }}
+        </div>
+      </div>
+    </div>
+    <div class="results-stats">
+      <h2>Overall</h2>
+      <div>
+        <label>Max WPM</label>
+        {{maxWpm | number:'1.0-0'}}
+      </div>
+      <div>
+        <label>Average WPM</label>
+        {{averageWpm | number:'1.0-0'}}
+      </div>
+    </div>
+  </div>
+</div>

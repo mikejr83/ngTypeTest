@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { OnDestroy } from "@angular/core/src/metadata/lifecycle_hooks";
 
 import { HighlightTag } from "angular-text-input-highlight";
-import { ipcRenderer } from "electron";
+import { Event, ipcRenderer } from "electron";
 import * as _ from "lodash";
 import * as moment from "moment";
 import * as momentDurationFormatSetup from "moment-duration-format";
@@ -139,6 +139,18 @@ export class TestService {
     this.logTest(abort, end);
   }
 
+  public async loadResultsForUser(username: string): Promise<Array<ITestResult>> {
+    this.loggerService.debug("Looking up the results for a user:", username);
+
+    ipcRenderer.send(EVENTS.RENDERER.TEST.LOAD_RESULTS_FOR_USER, username);
+
+    return new Promise<Array<ITestResult>>((resolve, reject) => {
+      ipcRenderer.once(EVENTS.MAIN.TEST.ON_TEST_RESULTS_LOADED, (event: Event, results: ITestResult[]) => {
+        resolve(results);
+      });
+    });
+  }
+
   private logTest(abort: boolean, end: Date) {
     this.loggerService.debug("Logging the test result!");
 
@@ -147,7 +159,8 @@ export class TestService {
       end,
       enteredText: this.typedText,
       info: Object.assign({}, this.testTextInfo),
-      start: this.testStartTime.toDate()
+      start: this.testStartTime.toDate(),
+      username: this.userService.user.username
     };
 
     ipcRenderer.send(EVENTS.RENDERER.TEST.LOG, result);

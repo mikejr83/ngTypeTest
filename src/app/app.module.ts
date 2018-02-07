@@ -19,6 +19,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "app/app.component";
 import { HomeComponent } from "app/components/home/home.component";
 import { ConfigurationComponent } from "app/components/pages/configuration/configuration.component";
+import { ResultsComponent } from "app/components/pages/results/results.component";
 import { TypingTestComponent } from "app/components/pages/typing-test/typing-test.component";
 import { MenuComponent } from "app/components/ui/menu/menu.component";
 import { TesterComponent } from "app/components/ui/tester/tester.component";
@@ -48,6 +49,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ConfigurationComponent,
     HomeComponent,
     MenuComponent,
+    ResultsComponent,
     TesterComponent,
     TestTextareaDirective,
     TypingTestComponent,

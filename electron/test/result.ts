@@ -8,4 +8,5 @@ export interface ITestResult {
   badWords: HighlightTag[];
   start: Date;
   end: Date;
+  username: string;
 }

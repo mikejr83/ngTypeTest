@@ -18,3 +18,18 @@ export async function saveTestResult(result: ITestResult) {
     }
   });
 }
+
+export async function loadTestResults(username?: string): Promise<ITestResult[]> {
+  const db = await getDatabase();
+
+  const resultsCollection = await db.collection<ITestResult>(COLLECTION_NAME);
+
+  return new Promise<ITestResult[]>((resolve, reject) => {
+    resultsCollection.find({ username }).toArray((error, queryResults: ITestResult[]) => {
+      resolve(queryResults);
+    });
+  }).catch((e) => {
+    logger.error("Unable to query for test results!", e);
+    return [];
+  });
+}
