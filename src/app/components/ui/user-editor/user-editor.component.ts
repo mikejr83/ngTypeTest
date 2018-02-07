@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms/src/directives/ng_form";
 
-import { ElectronService } from "app/providers/electron.service";
+import { ConfigurationService } from "app/providers/configuration.service";
 import { LoggerService } from "app/providers/logging/logger.service";
 import { UserService } from "app/providers/user.service";
 
@@ -18,7 +18,7 @@ export class UserEditorComponent implements OnInit {
   public loginError: boolean;
   public name: string;
 
-  constructor(private electronService: ElectronService, private loggerService: LoggerService, private userService: UserService) {
+  constructor(private configurationService: ConfigurationService, private loggerService: LoggerService, private userService: UserService) {
 
   }
 
@@ -57,6 +57,7 @@ export class UserEditorComponent implements OnInit {
 
     this.loggerService.debug("Setting the last user.", this.userService.user);
     // Tell the app who the last user is
-    this.electronService.configuration.lastUsername = this.userService.user.username;
+    this.configurationService.configuration.lastUsername = this.userService.user.username;
+    this.configurationService.saveCurrentConfig();
   }
 }

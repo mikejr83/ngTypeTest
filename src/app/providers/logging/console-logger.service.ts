@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-import { ElectronService } from "app/providers/electron.service";
+import { ConfigurationService } from "app/providers/configuration.service";
 import { Logger } from "./logger.service";
 
 const noop = (): any => undefined;
@@ -8,13 +8,13 @@ const noop = (): any => undefined;
 @Injectable()
 export class ConsoleLoggerService implements Logger {
 
-  constructor(private electronService: ElectronService) {
+  constructor(private configurationService: ConfigurationService) {
 
   }
 
   get debug() {
     if (this.findLevel() >= 0) {
-      return console.info.bind(console);
+      return console.debug.bind(console);
     } else {
       return noop;
     }
@@ -45,7 +45,7 @@ export class ConsoleLoggerService implements Logger {
   }
 
   private findLevel() {
-    switch (this.electronService.configuration.logLevel) {
+    switch (this.configurationService.configuration.logLevel) {
       case "silly":
         return 0;
 

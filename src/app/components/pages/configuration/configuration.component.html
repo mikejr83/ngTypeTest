@@ -1,6 +1,6 @@
 <div class="container">
   <h1 class="title" [translate]="'NAVIGATION.CONFIGURATION'"></h1>
-  <form (ngSubmit)="onSubmit()" #configurationForm="ngForm">
+  <form (ngSubmit)="onSubmit(configurationForm)" #configurationForm="ngForm">
     <div *ngIf="currentUser !== undefined">
       <h2 [translate]="'PAGES.CONFIGURATION.HEADINGS.USER_INFO'"></h2>
 
@@ -15,7 +15,7 @@
     </div>
 
     <div class="form-group" *ngIf="currentUser !== undefined">
-      <div class="form-check" >
+      <div class="form-check">
         <input type="checkbox" class="form-check-input" id="removeAsciiCharacters" name="removeAsciiCharacters" [(ngModel)]="currentUser.configuration.removeNonAsciiCharacters">
         <label class="form-check-label" for="removeAsciiCharacters" [translate]="'PAGES.CONFIGURATION.LABELS.REMOVE_NONASCII'"></label>
 
@@ -25,15 +25,32 @@
 
     <div class="form-group" *ngIf="currentUser !== undefined">
       <label for="wikipediaUrl" [translate]="'PAGES.CONFIGURATION.LABELS.WIKIPEDIA_URL'"></label>
-      <input type="url" class="form-control" id="wikipediaUrl" name="wikipediaUrl" [(ngModel)]="currentUser.configuration.wikipediaUrl" required>
+      <input type="url" class="form-control" id="wikipediaUrl" name="wikipediaUrl" [(ngModel)]="currentUser.configuration.wikipediaUrl"
+        required>
       <small class="form-text text-muted" [translate]="'PAGES.CONFIGURATION.WIKIPEDIA_INFO'"></small>
     </div>
 
     <div class="form-group" *ngIf="currentUser !== undefined">
       <label for="testTextLength" [translate]="'PAGES.CONFIGURATION.LABELS.TEST_WORD_COUNT'"></label>
-      <input type="number" class="form-control" id="testTextLength" name="testTextLength" [(ngModel)]="currentUser.configuration.wordCount" required>
+      <input type="number" class="form-control" id="testTextLength" name="testTextLength" [(ngModel)]="currentUser.configuration.wordCount"
+        required>
     </div>
 
-    <button type="submit" class="btn btn-primary" [translate]="'PAGES.CONFIGURATION.BTN_SAVE'" [disabled]="saving || !configurationForm.form.valid" ></button>
+    <h2 [translate]="'PAGES.CONFIGURATION.HEADINGS.APP_PREF'"></h2>
+
+    <div class="form-group">
+      <label for="applicationDebugLevel" [translate]="'PAGES.CONFIGURATION.LABELS.DEBUG_LABEL'"></label>
+      <select id="applicationDebugLevel" class="form-control" [(ngModel)]="currentElectron.logLevel" name="debugLevel">
+        <option *ngFor="let level of debugLevels" [ngValue]="level.code">{{level.displayName}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="showDebugTools" name="showDebugTools" [(ngModel)]="currentElectron.showDebugTools">
+          <label class="form-check-label" for="showDebugTools" [translate]="'PAGES.CONFIGURATION.LABELS.SHOW_DEBUG_TOOLS'"></label>
+        </div>
+      </div>
+    <button type="submit" class="btn btn-primary" [translate]="'PAGES.CONFIGURATION.BTN_SAVE'" [disabled]="saving || !configurationForm.form.valid"></button>
   </form>
 </div>

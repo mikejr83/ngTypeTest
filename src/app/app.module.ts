@@ -30,6 +30,7 @@ import { TestTextareaDirective } from "app/directives/tester/test-textarea.direc
 import { WebviewDirective } from "app/directives/webview.directive";
 
 // Providers
+import { ConfigurationService } from "app/providers/configuration.service";
 import { ElectronService } from "app/providers/electron.service";
 import { ConsoleLoggerService } from "app/providers/logging/console-logger.service";
 import { LoggerService } from "app/providers/logging/logger.service";
@@ -69,6 +70,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
   ],
   providers: [
+    ConfigurationService,
     ElectronService,
     TestService,
     UserService,

@@ -11,12 +11,15 @@
     "CONFIGURATION": {
       "BTN_SAVE": "Save",
       "HEADINGS": {
+        "APP_PREF": "Application Preferences",
         "GENERAL": "General User Preferences",
         "USER_INFO": "Your User Information"
       },
       "LABELS": {
+        "DEBUG_LABEL": "Debug Level",
         "LANGUAGE": "Language",
         "REMOVE_NONASCII": "Remove Non-ASCII Characters",
+        "SHOW_DEBUG_TOOLS": "Show Debug Tools",
         "TEST_WORD_COUNT": "Test Length",
         "WIKIPEDIA_URL": "Wikipedia URL"
       },

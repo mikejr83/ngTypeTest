@@ -6,9 +6,6 @@ import { OnDestroy } from "@angular/core/src/metadata/lifecycle_hooks";
 import * as childProcess from "child_process";
 import { ipcRenderer, OpenExternalOptions, shell } from "electron";
 
-import config from "../../../electron/configuration";
-import { ElectronConfiguration } from "../../../electron/configuration/electron";
-import { EVENTS } from "../../../electron/constants";
 import { environment } from "../../environments";
 
 @Injectable()
@@ -16,11 +13,8 @@ export class ElectronService {
 
   ipcRenderer: typeof ipcRenderer;
   childProcess: typeof childProcess;
-  configuration: ElectronConfiguration;
 
   constructor() {
-    this.configuration = config;
-
     // Conditional imports
     if (this.isElectron()) {
       this.ipcRenderer = window.require("electron").ipcRenderer;

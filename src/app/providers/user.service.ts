@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { ipcRenderer } from "electron";
 
-import { ElectronService } from "app/providers/electron.service";
+import { ConfigurationService } from "app/providers/configuration.service";
 import { LoggerService } from "app/providers/logging/logger.service";
 
 import { defaultConfiguration } from "../../../electron/configuration/user";
@@ -14,12 +14,12 @@ import { IUser } from "../../../electron/user/user";
 export class UserService {
   public user: IUser;
 
-  constructor(private electronService: ElectronService, private loggerService: LoggerService, private translateService: TranslateService) {
+  constructor(private configurationService: ConfigurationService, private loggerService: LoggerService, private translateService: TranslateService) {
     // Check to see if there is a lastUsername defined. If it is then we'll load up the last user of the app.
-    if (electronService.configuration.lastUsername !== undefined) {
+    if (configurationService.configuration.lastUsername !== undefined) {
       loggerService.debug("Looks like there was a previous user...");
 
-      this.loginUser(electronService.configuration.lastUsername);
+      this.loginUser(configurationService.configuration.lastUsername);
     }
   }
 
@@ -90,7 +90,8 @@ export class UserService {
   public logoutCurrentUser() {
     this.loggerService.debug("Logging out user! Setting user service user to undefined and clearing the config's lastUsername.");
     this.user = undefined;
-    this.electronService.configuration.lastUsername = undefined;
+    this.configurationService.configuration.lastUsername = undefined;
+    this.configurationService.saveCurrentConfig();
   }
 
   public registerUser(email: string, name: string): Promise<IUser> {
@@ -130,7 +131,8 @@ export class UserService {
 
       this.loggerService.debug("Setting the last user.", this.user);
       // Tell the app who the last user is
-      this.electronService.configuration.lastUsername = this.user.username;
+      this.configurationService.configuration.lastUsername = this.user.username;
+      this.configurationService.saveCurrentConfig();
 
       this.translateService.use(this.user.configuration.culture);
     }
