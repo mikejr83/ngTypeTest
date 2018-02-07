@@ -27,20 +27,26 @@ export class UserLogonComponent implements OnInit {
     this.newUser = true;
   }
 
-  async onSubmit(form: NgForm) {
+  async submitRegistration(form: NgForm) {
+    this.loggerService.debug("New user. Registering the user.");
+    // Call the registration function on the user service.
+    this.userService.registerUser(form.value.email, form.value.name);
+  }
+
+  async submitLogin(form: NgForm) {
     // Reset the login error flag.
     this.loginError = false;
 
-    // If we're dealing with a new user case then we'll register them.
-    if (this.newUser) {
-      this.loggerService.debug("New user. Registering the user.");
-      // Call the registration function on the user service.
-      this.userService.registerUser(form.value.email, form.value.name);
-    } else { // The user is attempting to log-in. Use the load user functionality.
-      this.loggerService.debug("Existing user. Getting their info...");
-      await this.userService.loginUser(form.value.email);
-      this.loggerService.debug("Login performed. Checking to see if it was good.");
-      this.loginError = this.userService.user === undefined || this.userService.user === null;
-    }
+    // The user is attempting to log-in. Use the load user functionality.
+    this.loggerService.debug("Existing user. Getting their info...");
+    await this.userService.loginUser(form.value.email);
+    this.loggerService.debug("Login performed. Checking to see if it was good.");
+    this.loginError = this.userService.user === undefined || this.userService.user === null;
+  }
+
+  cancelRegistration() {
+    this.newUser = false;
+    this.email = "";
+    this.name = "";
   }
 }

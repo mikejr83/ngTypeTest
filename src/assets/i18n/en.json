@@ -31,6 +31,7 @@
     "USER_LOGON": {
       "BTN_UPDATE_INFO": "Update My Info",
       "BTN_SIGNUP": "Sign-Up",
+      "BTN_CANCEL": "Cancel",
       "CANT_FIND_EMAIL": "Unable to find a user with this email!",
       "CONTINUE": "Continue",
       "EMAIL_NOTICE": "We'll never share your email with anyone else.",
@@ -41,7 +42,7 @@
         "NAME_2": "Your Name"
       },
       "NEW_USERS": "New Users",
-      "RETURNING_USER": "Returning users can enter their email."
+      "RETURNING_USER": "Coming back? Enter your email to log-in!"
     }
   },
   "NAVIGATION": {
@@ -49,6 +50,7 @@
     "HOME": "Home",
     "LOGOUT": "Log-out",
     "RESULTS": "Results",
-    "SIGNUP": "Sign-up"
+    "SIGNUP": "Sign-up",
+    "TEST": "Take Test"
   }
 }
