@@ -1,12 +1,10 @@
+@import "../../../../variables";
+
 .wrapper {
   display: grid;
   grid-template-columns: auto 300px;
   grid-gap: 1rem;
   grid-auto-rows: minmax(3rem, auto);
-
-  // > div {
-  //   outline: solid 1px red;
-  // }
 }
 
 .test-text-container {
@@ -21,5 +19,13 @@
 
 .test-status-container {
   grid-column: 2;
-  grid-row: 1 / 2
+  grid-row: span 2;
+
+}
+
+.card.bg-success {
+  color: $white;
+  &, h1, h2, h3, h4, h5, h6 {
+    color: $white;
+  }
 }
