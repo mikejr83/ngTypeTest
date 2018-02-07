@@ -4,15 +4,12 @@
       <div class="card">
         <div class="card-body">
           <div *ngIf="testService.testStatus === 1">
-            <p class="lead">
-              To start the test press the button below. Your typing test text will then appear. The timer will be begin when you start
-              typing.
-            </p>
-            <button type="button" class="btn btn-success" (click)="getTestText()">Get Test</button>
+            <p class="lead" [translate]="'PAGES.TEST.LEAD'"></p>
+            <button type="button" class="btn btn-success" (click)="getTestText()" [translate]="'PAGES.TEST.BTNS.GET'"></button>
           </div>
           <div *ngIf="testService.testStatus !== 1" [innerHtml]="testService.testHtml"></div>
           <footer *ngIf="testService.testStatus !== 1" class="blockquote-footer">
-            Test text taken from
+            <span [translate]="'PAGES.TEST.TEXT_FROM'"></span>:
             <a href="javascript:void(0)" (click)="navigateToTextLocation()">{{testService.testTextInfo.locationDescription}}</a>
           </footer>
         </div>
@@ -21,31 +18,22 @@
     <div class="test-user-input-container">
       <div class="card" [hidden]="testService.testStatus === 1">
         <div class="card-body">
-
           <div class="form-group" mwlTextInputHighlightContainer>
             <textarea [rows]="6" class="form-control" [readonly]="testService.testStatus === 1 || testService.testStatus === 4 || testService.testStatus === 5"
               name="typedText" appTextarea mwlTextInputElement [(ngModel)]="testService.typedText" #typedText>
-
             </textarea>
             <mwl-text-input-highlight [tags]="testService.badWords" [textInputElement]="typedText">
             </mwl-text-input-highlight>
           </div>
           <div class="d-flex">
-            <button type="button" class="btn btn-default mr-2" *ngIf="testService.testStatus === 3" (click)="abortTest()">Stop</button>
-            <button type="button" class="btn btn-success mr-2" *ngIf="testService.testStatus === 4 || testService.testStatus === 5" (click)="restartTest()">Restart</button>
-            <button type="button" class="btn btn-primary mr-2" *ngIf="testService.testStatus === 4 || testService.testStatus === 5" (click)="newTest()">New Test</button>
+            <button type="button" class="btn btn-default mr-2" *ngIf="testService.testStatus === 3" (click)="abortTest()" [translate]="'PAGES.TEST.BTNS.STOP'"></button>
+            <button type="button" class="btn btn-success mr-2" *ngIf="testService.testStatus === 4 || testService.testStatus === 5" (click)="restartTest()" [translate]="'PAGES.TEST.BTNS.RESTART'"></button>
+            <button type="button" class="btn btn-primary mr-2" *ngIf="testService.testStatus === 4 || testService.testStatus === 5" (click)="newTest()" [translate]="'PAGES.TEST.BTNS.NEW'"></button>
           </div>
           <footer>
-            <span *ngIf="testService.testStatus === 2" class="blockquote-footer">
-              Your test is ready to begin. When you start typing the timer will begin.
-            </span>
-            <span *ngIf="testService.testStatus === 3" class="blockquote-footer">
-              The test will stop when you click the
-              <em>Stop</em> button or the same number of characters have been entered.
-            </span>
-            <span class="text-success" *ngIf="testService.testStatus === 5">
-              The test has completed.
-            </span>
+            <span *ngIf="testService.testStatus === 2" class="blockquote-footer" [translate]="'PAGES.TEST.INSTRUCTIONS'"></span>
+            <span *ngIf="testService.testStatus === 3" class="blockquote-footer" [translate]="'PAGES.TEST.INSTRUCTIONS_2'"></span>
+            <span class="text-success" *ngIf="testService.testStatus === 5" [translate]="'PAGES.TEST.TEST_COMPLETED'"></span>
           </footer>
         </div>
       </div>
@@ -53,32 +41,28 @@
 
     <div class="test-status-container">
       <div class="card" [ngClass]="{'bg-success': testService.testStatus === 5, 'bg-light': testService.testStatus !== 5}" [hidden]="testService.testStatus === 1">
-        <h2 class="card-header">Stats</h2>
+        <h2 class="card-header" [translate]="'PAGES.TEST.HEADINGS.STATS'"></h2>
         <div class="card-body">
-          <h5 class="card-title">Timer</h5>
+          <h5 class="card-title" [translate]="'PAGES.TEST.HEADINGS.TIMER'"></h5>
           {{testService.formattedDuration}}
 
-          <h5 class="mt-3">WPM</h5>
+          <h5 class="mt-3" [translate]="'PAGES.TEST.HEADINGS.WPM'"></h5>
           {{testService.wpm | number:'1.0-0'}}
 
-          <h5 class="mt-3">Words Typed</h5>
+          <h5 class="mt-3" [translate]="'PAGES.TEST.HEADINGS.TYPED_WORDS'"></h5>
           {{testService.wordsTyped.length}}
 
-          <h5 class="mt-3">Mis-Typed Words</h5>
+          <h5 class="mt-3" [translate]="'PAGES.TEST.HEADINGS.INCORRECT'"></h5>
           {{testService.incorrect}}
 
-          <h5 class="mt-3">Error Percentage</h5>
+          <h5 class="mt-3" [translate]="'PAGES.TEST.HEADINGS.ERROR'"></h5>
           {{testService.errorPercentage | percent:'1.1-1' }}
 
           <div *ngIf="testService.testStatus === 5">
-            <p>
-              Completed!
-            </p>
+            <p [translate]="'PAGES.TEST.COMPLETED'"></p>
           </div>
         </div>
       </div>
-
     </div>
-
   </div>
 </div>

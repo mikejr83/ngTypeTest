@@ -1,5 +1,4 @@
 <div class="p-2">
-
   <form #loginForm="ngForm" (ngSubmit)="submitLogin(loginForm)" *ngIf="!newUser">
     <div class="" *ngIf="!newUser">
       <p class="lead" [translate]="'COMPONENTS.USER_LOGON.RETURNING_USER'"></p>
@@ -16,9 +15,7 @@
   </form>
 
   <form #registrationForm="ngForm" (ngSubmit)="submitRegistration(registrationForm)" *ngIf="newUser">
-    <p class="lead">
-      Registering allows all of your tests to be stored. The system will track your best scores and average WPM.
-    </p>
+    <p class="lead" [translate]="'COMPONENTS.USER_LOGON.LEAD'"></p>
     <div class="form-group">
       <label for="usersName" [translate]="'COMPONENTS.USER_LOGON.LABELS.NAME_2'"></label>
       <input type="text" class="form-control" id="usersName" placeholder="Name" [(ngModel)]="name" required name="name">
@@ -30,10 +27,7 @@
       <small id="emailHelp" class="form-text text-muted" [translate]="'COMPONENTS.USER_LOGON.EMAIL_NOTICE'"></small>
     </div>
 
-    <button class="btn btn-primary mr-3" type="submit" [disabled]="registrationForm.invalid || registrationForm.pending" [translate]="'COMPONENTS.USER_LOGON.BTN_SIGNUP'">
-    </button>
-    <button class="btn btn-default" type="button" (click)="cancelRegistration()" [translate]="'COMPONENTS.USER_LOGON.BTN_CANCEL'">
-
-    </button>
+    <button class="btn btn-primary mr-3" type="submit" [disabled]="registrationForm.invalid || registrationForm.pending" [translate]="'COMPONENTS.USER_LOGON.BTN_SIGNUP'"></button>
+    <button class="btn btn-default" type="button" (click)="cancelRegistration()" [translate]="'COMPONENTS.USER_LOGON.BTN_CANCEL'"></button>
   </form>
 </div>

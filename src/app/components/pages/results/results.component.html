@@ -1,7 +1,7 @@
 <div class="container">
   <div class="wrapper" *ngIf="results.length > 0">
     <div class="results-container">
-      <h2 class="mb-3">Test History</h2>
+      <h2 class="mb-3 text-white" [translate]="'PAGES.RESULTS.HEADINGS.HISTORY'"></h2>
       <div *ngFor="let testResult of results" class="card mb-2">
         <div class="card-body">
           <h5 class="card-title">{{testResult.start | date:'short'}}</h5>
@@ -19,38 +19,38 @@
             <mwl-text-input-highlight [tags]="testResult.badWords" [textInputElement]="typedText">
             </mwl-text-input-highlight>
           </div>
-          <h6>Stats</h6>
+          <h6 [translate]="'PAGES.RESULTS.HEADINGS.STATS'"></h6>
           <span class="badge badge-secondary mr-2">
-            <label>Time Taken</label>
+            <label [translate]="'PAGES.RESULTS.LABELS.TIME_TAKEN'"></label>
             {{testResult.duration}}
           </span>
           <span class="badge badge-secondary mr-2">
-            <label>WPM</label>
+            <label [translate]="'PAGES.RESULTS.LABELS.WPM'"></label>
             {{testResult.wpm | number:'1.0-0'}}
           </span>
           <span class="badge badge-secondary mr-2">
-            <label>Words Typed</label>
+            <label [translate]="'PAGES.RESULTS.LABELS.WORDS_TYPED'"></label>
             {{testResult.numberOfWords}}
           </span>
           <span class="badge badge-secondary mr-2">
-            <label>Mis-typed Words</label>
+            <label [translate]="'PAGES.RESULTS.LABELS.INCORRECT'"></label>
             {{testResult.badWords.length}}
           </span>
           <span class="badge badge-secondary mr-2">
-            <label>Error Percentage</label>
+            <label [translate]="'PAGES.RESULTS.LABELS.ERROR'"></label>
             {{(testResult.badWords.length / testResult.numberOfWords) | percent:'1.1-1' }}
           </span>
         </div>
       </div>
     </div>
     <div class="results-stats">
-      <h2 class="mb-3">Overall</h2>
+      <h2 class="mb-3 text-white" [translate]="'PAGES.RESULTS.HEADINGS.OVERALL'"></h2>
 
       <div class="card">
         <div class="card-body">
-          <h5>Max WPM</h5>
+          <h5 [translate]="'PAGES.RESULTS.HEADINGS.MAX_WPM'"></h5>
           {{maxWpm | number:'1.0-0'}}
-          <h5 class="mt-3">Average WPM</h5>
+          <h5 class="mt-3" [translate]="'PAGES.RESULTS.HEADINGS.AVG_WPM'"></h5>
           {{averageWpm | number:'1.0-0'}}
         </div>
       </div>
@@ -58,9 +58,9 @@
   </div>
   <div *ngIf="results.length === 0" class="jumbotron jumbotron-fluid rounded bg-warning">
     <div class="container">
-      <h1>No Results!</h1>
-      <p class="lead">Start taking tests to track your results.</p>
-      <a routerLink="/typing-test" class="btn btn-success">Take Test</a>
+      <h1 [translate]="'PAGES.RESULTS.HEADINGS.NO_RESULTS'"></h1>
+      <p class="lead" [translate]="'PAGES.RESULTS.LEAD'"></p>
+      <a routerLink="/typing-test" class="btn btn-success" [translate]="'PAGES.RESULTS.TAKE_TEST'"></a>
     </div>
   </div>
 </div>

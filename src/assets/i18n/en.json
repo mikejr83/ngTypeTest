@@ -1,11 +1,12 @@
 {
-
   "PAGES": {
     "HOME": {
       "BTN_TAKE_TEST": "Take Typing Test",
-      "GREETING": "Good to see you again {{name}}",
+      "GOTO_TEST": "Look at your Previous Results!",
+      "GREETING": "Good to see you again {{name}}!",
       "GREETING_2": "Welcome {{name}}",
       "GREETING_3": "First time here?",
+      "LEAD": "Typing speed and accuracy test using Wikipedia articles!",
       "TITLE": "Welcome to ngType Tester"
     },
     "CONFIGURATION": {
@@ -17,14 +18,58 @@
       },
       "LABELS": {
         "DEBUG_LABEL": "Debug Level",
+        "EMAIL": "Email",
         "LANGUAGE": "Language",
+        "NAME": "Name",
         "REMOVE_NONASCII": "Remove Non-ASCII Characters",
         "SHOW_DEBUG_TOOLS": "Show Debug Tools",
         "TEST_WORD_COUNT": "Test Length",
         "WIKIPEDIA_URL": "Wikipedia URL"
       },
+      "LEAD": "The application is broken into user configurations and application wide settings.",
       "REMOVE_ASCII_INFO": "Removing non-ASCII characters is generally advised for English speaking users. For users attempting this test where Unicode characters are used in their supported language you should disable this functionality.",
       "WIKIPEDIA_INFO": "This URL is used to pull random text for your test. It can be adjusted as needed."
+    },
+    "RESULTS": {
+      "HEADINGS": {
+        "AVG_WPM": "Average WPM",
+        "HISTORY": "Test History",
+        "MAX_WPM": "Max WPM",
+        "NO_RESULTS": "No Results",
+        "OVERALL": "Overall",
+        "STATS": "Stats"
+      },
+      "LABELS": {
+        "ERROR": "Error Percentage",
+        "INCORRECT": "Incorrect Words",
+        "TIME_TAKEN": "Time Taken",
+        "WORDS_TYPED": "Words Typed",
+        "WPM": "WPM"
+      },
+      "LEAD": "Start taking tests to track your results.",
+      "TAKE_TEST": "Take Test"
+    },
+    "TEST": {
+      "BTNS": {
+        "GET": "Get Test",
+        "NEW": "New Test",
+        "RESTART": "Restart",
+        "STOP": "Stop"
+      },
+      "COMPLETED": "Completed!",
+      "HEADINGS": {
+        "ERROR": "Error Percentage",
+        "INCORRECT": "Incorrect Words",
+        "STATS": "Stats",
+        "TIMER": "Timer",
+        "TYPED_WORDS": "Words Typed",
+        "WPM": "WPM"
+      },
+      "INSTRUCTIONS": "Your test is ready to begin. When you start typing the timer will begin.",
+      "INSTRUCTIONS_2": "The test will stop when you click the 'Stop' button or the same number of characters have been entered.",
+      "LEAD": "To start the test press the button below. Your typing test text will then appear. The timer will be begin when you start typing.",
+      "TEST_COMPLETED": "The test has completed.",
+      "TEXT_FROM": "Test text taken from"
     }
   },
   "COMPONENTS": {
@@ -41,6 +86,7 @@
         "NAME": "Name",
         "NAME_2": "Your Name"
       },
+      "LEAD": "Registering allows all of your tests to be stored. The system will track your best scores and average WPM.",
       "NEW_USERS": "New Users",
       "RETURNING_USER": "Coming back? Enter your email to log-in!"
     }

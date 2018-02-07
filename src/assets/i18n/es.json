@@ -1,24 +1,83 @@
 {
-
   "PAGES": {
     "HOME": {
       "BTN_TAKE_TEST": "Toma la prueba de tipeo",
+      "GOTO_TEST": "¡Mira tus resultados anteriores!",
       "GREETING": "Es bueno verte de nuevo {{name}}",
       "GREETING_2": "Bienvenido {{name}}",
       "GREETING_3": "¿Primera vez aquí?",
+      "LEAD": "¡Prueba de velocidad y precisión de escritura usando artículos de Wikipedia!",
       "TITLE": "Bienvenido a ngType Tester"
     },
     "CONFIGURATION": {
+      "BTN_SAVE": "Salvar",
+      "HEADINGS": {
+        "APP_PREF": "Preferencias de aplicaciones",
+        "GENERAL": "Preferencias generales del usuario",
+        "USER_INFO": "Su información de usuario"
+      },
       "USER_INFO_TITLE": "Su Información de Usuario",
       "LABELS": {
-        "LANGUAGE": "Idioma"
-      }
+        "DEBUG_LABEL": "Nivel de depuración",
+        "EMAIL": "Email",
+        "LANGUAGE": "Idioma",
+        "NAME": "Nombre",
+        "REMOVE_NONASCII": "Eliminar personajes no ASCII",
+        "SHOW_DEBUG_TOOLS": "Mostrar herramientas de depuración",
+        "TEST_WORD_COUNT": "Longitud de prueba",
+        "WIKIPEDIA_URL": "Wikipedia URL"
+      },
+      "LEAD": "La aplicación está dividida en configuraciones de usuario y configuraciones de aplicación.",
+      "REMOVE_ASCII_INFO": "En general, se recomienda eliminar caracteres que no sean ASCII para los usuarios que hablan inglés. Para los usuarios que intenten esta prueba donde se usan caracteres Unicode en su idioma compatible, debe desactivar esta funcionalidad.",
+      "WIKIPEDIA_INFO": "Esta URL se usa para extraer texto aleatorio para su prueba. Se puede ajustar según sea necesario."
+    },
+    "RESULTS": {
+      "HEADINGS": {
+        "AVG_WPM": "Promedio de Palabras por Minuto",
+        "HISTORY": "Historial de Prueba",
+        "MAX_WPM": "Max Words por Minuto",
+        "NO_RESULTS": "No Hay Resultados",
+        "OVERALL": "En general",
+        "STATS": "Estadísticas"
+      },
+      "LABELS": {
+        "ERROR": "Porcentaje de Error",
+        "INCORRECT": "Palabras Incorrectas",
+        "TIME_TAKEN": "Tiempo Tomado",
+        "WORDS_TYPED": "Palabras Escritas",
+        "WPM": "Palabras por Minuto"
+      },
+      "LEAD": "Comience a tomar pruebas para rastrear sus resultados.",
+      "TAKE_TEST": "Realizar Prueba"
+    },
+    "TEST": {
+      "BTNS": {
+        "GET": "Obtener Prueba",
+        "NEW": "Nueva Prueba",
+        "RESTART": "Reiniciar",
+        "STOP": "Detener"
+      },
+      "COMPLETED": "¡Terminado!",
+      "HEADINGS": {
+        "ERROR": "Porcentaje de Error",
+        "INCORRECT": "Palabras Incorrectas",
+        "STATS": "Estadística",
+        "TIMER": "Tireloj de Arenamer",
+        "TYPED_WORDS": "Palabras Escritas",
+        "WPM": "Palabras por Minuto"
+      },
+      "INSTRUCTIONS": "Tu prueba está lista para comenzar. Cuando empiezas a escribir, el temporizador comenzará.",
+      "INSTRUCTIONS_2": "La prueba se detendrá cuando haga clic en el botón \"Parar\" o se haya ingresado la misma cantidad de caracteres",
+      "LEAD": "Para comenzar la prueba, presione el botón de abajo. Aparecerá su texto de prueba de escritura. El temporizador comenzará cuando empieces a escribir.",
+      "TEST_COMPLETED": "La prueba ha terminado.",
+      "TEXT_FROM": "Texto de prueba tomado de"
     }
   },
   "COMPONENTS": {
     "USER_LOGON": {
       "BTN_UPDATE_INFO": "Actualizar mi información",
       "BTN_SIGNUP": "Regístrate",
+      "BTN_CANCEL": "Cancelar",
       "CANT_FIND_EMAIL": "¡No se puede encontrar un usuario con este correo electrónico!",
       "CONTINUE": "Continuar",
       "EMAIL_NOTICE": "Nunca compartiremos su correo electrónico con nadie más.",
@@ -28,14 +87,18 @@
         "NAME": "Nombre",
         "NAME_2": "Tu nombre"
       },
+      "LEAD": "Registrarse permite almacenar todas sus pruebas. El sistema rastreará tus mejores puntajes y promedio de WPM.",
       "NEW_USERS": "Usuarios nuevos",
-      "RETURNING_USER": "Los usuarios que regresan pueden ingresar su correo electrónico."
+      "RETURNING_USER": "¿Regresando? ¡Ingrese su correo electrónico para iniciar sesión!"
     }
   },
   "NAVIGATION": {
     "CONFIGURATION": "Configuración",
     "HOME": "Origen",
     "LOGOUT": "Cerrar sesión",
-    "SIGNUP": "Regístrate"
+    "RESULTS": "Resultados",
+    "SIGNUP": "Regístrate",
+    "TEST": "Realizar Prueba"
+
   }
 }

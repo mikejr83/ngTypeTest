@@ -3,19 +3,17 @@
     <div class="card">
       <div class="card-body">
         <h1 class="card-title" [translate]="'NAVIGATION.CONFIGURATION'"></h1>
-        <p class="lead">
-          The application is broken into user configurations and application wide settings.
-        </p>
+        <p class="lead" [translate]="'PAGES.CONFIGURATION.LEAD'"></p>
       </div>
 
       <div class="card-body" *ngIf="currentUser !== undefined">
         <h2 class="card-subtitle text-muted" [translate]="'PAGES.CONFIGURATION.HEADINGS.USER_INFO'"></h2>
         <div class="form-group">
-          <label>Name</label>
+          <label [translate]="'PAGES.CONFIGURATION.LABELS.NAME'"></label>
           <input type="text" id="usersName" name="usersName" class="form-control" [(ngModel)]="currentUser.name" required />
         </div>
         <div class="form-group">
-          <label>Email</label>
+          <label [translate]="'PAGES.CONFIGURATION.LABELS.EMAIL'"></label>
           <input type="email" readonly id="username" name="username" class="form-control" [value]="currentUser.username" />
         </div>
       </div>

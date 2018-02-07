@@ -2,7 +2,7 @@
   <div class="jumbotron jumbotron-fluid rounded">
     <div class="container">
       <h1 [translate]="'PAGES.HOME.TITLE'"></h1>
-      <p class="lead">Tying speed and acuracy test using Wikipedia articles!</p>
+      <p class="lead" [translate]="'PAGES.HOME.LEAD'"></p>
     </div>
   </div>
 
@@ -10,13 +10,14 @@
     <h3 [translate]="'PAGES.HOME.GREETING'" [translateParams]="{name: userService.user.name}">
     </h3>
 
-    <p class="mt-4 mb-4">
-      You can pick up where you left off or
-      <a routerLink="/results">Look at Previous Results</a>
-    </p>
-    <div class="text-center">
-      <a routerLink="/typing-test" class="btn btn-lg btn-primary" [translate]="'PAGES.HOME.BTN_TAKE_TEST'">Take Typing Test</a>
+    <div class="text-center mt-4 mb-4">
+      <a routerLink="/typing-test" class="btn btn-lg btn-primary" [translate]="'PAGES.HOME.BTN_TAKE_TEST'"></a>
     </div>
+
+    <p>
+      <a routerLink="/results" [translate]="'PAGES.HOME.GOTO_TEST'"></a>
+    </p>
+
   </div>
 
   <div class="user-login-container bg-light rounded p-2" *ngIf="!userService.user">
