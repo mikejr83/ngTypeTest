@@ -1,56 +1,72 @@
 <div class="container">
-  <h1 class="title" [translate]="'NAVIGATION.CONFIGURATION'"></h1>
   <form (ngSubmit)="onSubmit(configurationForm)" #configurationForm="ngForm">
-    <div *ngIf="currentUser !== undefined">
-      <h2 [translate]="'PAGES.CONFIGURATION.HEADINGS.USER_INFO'"></h2>
-
-    </div>
-
-    <h2 [translate]="'PAGES.CONFIGURATION.HEADINGS.GENERAL'"></h2>
-    <div class="form-group" *ngIf="currentUser !== undefined">
-      <label for="applicationLanguage" [translate]="'PAGES.CONFIGURATION.LABELS.LANGUAGE'"></label>
-      <select id="applicationLanguage" class="form-control" [(ngModel)]="currentUser.configuration.culture" name="language" (change)="languageChanged()">
-        <option *ngFor="let c of cultures" [ngValue]="c.cultureCode">{{c.displayName}}</option>
-      </select>
-    </div>
-
-    <div class="form-group" *ngIf="currentUser !== undefined">
-      <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="removeAsciiCharacters" name="removeAsciiCharacters" [(ngModel)]="currentUser.configuration.removeNonAsciiCharacters">
-        <label class="form-check-label" for="removeAsciiCharacters" [translate]="'PAGES.CONFIGURATION.LABELS.REMOVE_NONASCII'"></label>
-
+    <div class="card">
+      <div class="card-body">
+        <h1 class="card-title" [translate]="'NAVIGATION.CONFIGURATION'"></h1>
+        <p class="lead">
+          The application is broken into user configurations and application wide settings.
+        </p>
       </div>
-      <small class="form-text text-muted" [translate]="'PAGES.CONFIGURATION.REMOVE_ASCII_INFO'"></small>
-    </div>
 
-    <div class="form-group" *ngIf="currentUser !== undefined">
-      <label for="wikipediaUrl" [translate]="'PAGES.CONFIGURATION.LABELS.WIKIPEDIA_URL'"></label>
-      <input type="url" class="form-control" id="wikipediaUrl" name="wikipediaUrl" [(ngModel)]="currentUser.configuration.wikipediaUrl"
-        required>
-      <small class="form-text text-muted" [translate]="'PAGES.CONFIGURATION.WIKIPEDIA_INFO'"></small>
-    </div>
-
-    <div class="form-group" *ngIf="currentUser !== undefined">
-      <label for="testTextLength" [translate]="'PAGES.CONFIGURATION.LABELS.TEST_WORD_COUNT'"></label>
-      <input type="number" class="form-control" id="testTextLength" name="testTextLength" [(ngModel)]="currentUser.configuration.wordCount"
-        required>
-    </div>
-
-    <h2 [translate]="'PAGES.CONFIGURATION.HEADINGS.APP_PREF'"></h2>
-
-    <div class="form-group">
-      <label for="applicationDebugLevel" [translate]="'PAGES.CONFIGURATION.LABELS.DEBUG_LABEL'"></label>
-      <select id="applicationDebugLevel" class="form-control" [(ngModel)]="currentElectron.logLevel" name="debugLevel">
-        <option *ngFor="let level of debugLevels" [ngValue]="level.code">{{level.displayName}}</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="showDebugTools" name="showDebugTools" [(ngModel)]="currentElectron.showDebugTools">
-          <label class="form-check-label" for="showDebugTools" [translate]="'PAGES.CONFIGURATION.LABELS.SHOW_DEBUG_TOOLS'"></label>
+      <div class="card-body" *ngIf="currentUser !== undefined">
+        <h2 class="card-subtitle text-muted" [translate]="'PAGES.CONFIGURATION.HEADINGS.USER_INFO'"></h2>
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" id="usersName" name="usersName" class="form-control" [(ngModel)]="currentUser.name" required />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" readonly id="username" name="username" class="form-control" [value]="currentUser.username" />
         </div>
       </div>
-    <button type="submit" class="btn btn-primary" [translate]="'PAGES.CONFIGURATION.BTN_SAVE'" [disabled]="saving || !configurationForm.form.valid"></button>
+
+      <div class="card-body" *ngIf="currentUser !== undefined">
+        <h2 class="card-subtitle text-muted" [translate]="'PAGES.CONFIGURATION.HEADINGS.GENERAL'"></h2>
+        <div class="form-group">
+          <label for="applicationLanguage" [translate]="'PAGES.CONFIGURATION.LABELS.LANGUAGE'"></label>
+          <select id="applicationLanguage" class="form-control" [(ngModel)]="currentUser.configuration.culture" name="language" (change)="languageChanged()">
+            <option *ngFor="let c of cultures" [ngValue]="c.cultureCode">{{c.displayName}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="removeAsciiCharacters" name="removeAsciiCharacters" [(ngModel)]="currentUser.configuration.removeNonAsciiCharacters">
+            <label class="form-check-label" for="removeAsciiCharacters" [translate]="'PAGES.CONFIGURATION.LABELS.REMOVE_NONASCII'"></label>
+
+          </div>
+          <small class="form-text text-muted" [translate]="'PAGES.CONFIGURATION.REMOVE_ASCII_INFO'"></small>
+        </div>
+        <div class="form-group">
+          <label for="wikipediaUrl" [translate]="'PAGES.CONFIGURATION.LABELS.WIKIPEDIA_URL'"></label>
+          <input type="url" class="form-control" id="wikipediaUrl" name="wikipediaUrl" [(ngModel)]="currentUser.configuration.wikipediaUrl"
+            required>
+          <small class="form-text text-muted" [translate]="'PAGES.CONFIGURATION.WIKIPEDIA_INFO'"></small>
+        </div>
+        <div class="form-group">
+          <label for="testTextLength" [translate]="'PAGES.CONFIGURATION.LABELS.TEST_WORD_COUNT'"></label>
+          <input type="number" class="form-control" id="testTextLength" name="testTextLength" [(ngModel)]="currentUser.configuration.wordCount"
+            required>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <h2 class="card-title text-muted" [translate]="'PAGES.CONFIGURATION.HEADINGS.APP_PREF'"></h2>
+        <div class="form-group">
+          <label for="applicationDebugLevel" [translate]="'PAGES.CONFIGURATION.LABELS.DEBUG_LABEL'"></label>
+          <select id="applicationDebugLevel" class="form-control" [(ngModel)]="currentElectron.logLevel" name="debugLevel">
+            <option *ngFor="let level of debugLevels" [ngValue]="level.code">{{level.displayName}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="showDebugTools" name="showDebugTools" [(ngModel)]="currentElectron.showDebugTools">
+            <label class="form-check-label" for="showDebugTools" [translate]="'PAGES.CONFIGURATION.LABELS.SHOW_DEBUG_TOOLS'"></label>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <button type="submit" class="btn btn-primary" [translate]="'PAGES.CONFIGURATION.BTN_SAVE'" [disabled]="saving || !configurationForm.form.valid"></button>
+      </div>
+    </div>
   </form>
 </div>
