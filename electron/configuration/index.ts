@@ -12,6 +12,9 @@ export function saveConfiguration(config: IElectronConfiguration) {
     configuration[key] = val;
     store.set(key, val);
   });
+
+  configuration.lastUsername = config.lastUsername;
+  store.set(CONFIGURATION.LAST_USERNAME, config.lastUsername);
 }
 
 export function loadConfiguration(): IElectronConfiguration {
