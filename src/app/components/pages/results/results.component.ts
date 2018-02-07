@@ -105,6 +105,6 @@ export class ResultsComponent implements OnInit {
       .value();
 
     this.maxWpm = maxWpm;
-    this.averageWpm = (maxWpm / rawResults.length);
+    this.averageWpm = (totalWPM / rawResults.length);
   }
 }
