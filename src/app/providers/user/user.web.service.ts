@@ -1,5 +1,9 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
+
+import * as _ from "lodash";
+import * as URI from "urijs";
 
 import { ConfigurationService } from "app/providers/configuration/configuration.service";
 import { LoggerService } from "app/providers/logging/logger.service";
@@ -12,7 +16,7 @@ import { UserService } from "app/providers/user/user.service";
 @Injectable()
 export class UserWebService extends UserService {
 
-  constructor(configurationService: ConfigurationService, loggerService: LoggerService, translateService: TranslateService) {
+  constructor(configurationService: ConfigurationService, private http: HttpClient, loggerService: LoggerService, translateService: TranslateService) {
     super(configurationService, loggerService, translateService);
   }
 
@@ -26,7 +30,9 @@ export class UserWebService extends UserService {
     // The call to update a user and get its result is async. Hand back a promise to update the user.
     return new Promise<IUser>((resolve, reject) => {
       // The user was updated. Resolve the promise with the new user object.
-      resolve();
+      this.http.post("/user", updatedUser).subscribe((savedUser: IUser) => {
+        resolve(savedUser);
+      })
     });
   }
 
@@ -39,7 +45,14 @@ export class UserWebService extends UserService {
 
     // The call out to the main process and its response are async. Hand back a promise to resolve a user object.
     return new Promise<IUser>((resolve, reject) => {
-      resolve();
+      const url = new URI("./user");
+      url.query({
+        "email": email
+      });
+
+      this.http.get(url.toString()).subscribe((user: IUser) => {
+        resolve(user);
+      });
     }).catch((e) => {
       this.loggerService.error("An error occurred for trying to load a user...", e);
 
@@ -59,8 +72,11 @@ export class UserWebService extends UserService {
     this.loggerService.debug("Sending the user to be registered in the db.", this.user);
 
     return new Promise<IUser>((resolve, reject) => {
-      // Fire and forget a save.
-      resolve();
+      this.http.put("./user", _.cloneDeep(this.user)).subscribe((savedUser) => {
+        resolve(savedUser as IUser);
+      }, (error) => {
+        console.error(error);
+      });
     });
   }
 }

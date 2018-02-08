@@ -12,6 +12,7 @@ import { UserService } from "app/providers/user/user.service";
 import { defaultConfiguration } from "app/../../electron/configuration/user";
 import { ITestResult } from "app/../../electron/test/result";
 import { ITestText } from "app/../../electron/test/testText";
+import { splitTextIntoWords } from "app/../../util/wordCount";
 
 export enum TestStatus {
   needText = 1,
@@ -95,6 +96,34 @@ export abstract class TestService {
   }
 
   protected abstract logTest(abort: boolean, end: Date);
+
+  protected makeText(testText: ITestText) {
+    this.loggerService.debug("Got wikipedia test text.");
+
+    this.testTextInfo = testText;
+    const testWords: string[] = [];
+    let textLength = 0;
+    _.forEach(testText.paragraphs, (paragraph) => {
+      this.testHtml += "<p>" + paragraph + "</p>\n";
+
+      textLength += paragraph.length;
+
+      const paragraphWords = splitTextIntoWords(paragraph, true);
+      testWords.push.apply(testWords, paragraphWords);
+    });
+
+    this.testWords = _.filter(testWords, (word) => {
+      return word !== "";
+    });
+
+    this.textLength = textLength;
+
+    this.loggerService.debug("Here are the test words:", this.testWords);
+
+    this.testStatus = TestStatus.ready;
+
+    return testText.paragraphs;
+  }
 
   protected timerTick() {
     const durationOfTest = moment.duration(moment().diff(this.testStartTime)) as any;

@@ -1,9 +1,11 @@
+import * as isElectronEnabled from "../electron-test.js";
+
 import "polyfills";
 import "reflect-metadata";
 import "zone.js/dist/zone-mix";
 
 import { HttpClient, HttpClientModule } from "@angular/common/http";
-import { NgModule } from "@angular/core";
+import { NgModule, Provider } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 
@@ -34,6 +36,7 @@ import { ConfigurationIpcService } from "app/providers/configuration/configurati
 import { ConfigurationService } from "app/providers/configuration/configuration.service";
 import { ConfigurationWebService } from "app/providers/configuration/configuration.web.service";
 
+import { ElectronIpcService } from "app/providers/electron/electron.ipc.service";
 import { ElectronService } from "app/providers/electron/electron.service";
 import { ElectronWebService } from "app/providers/electron/electron.web.service";
 
@@ -54,6 +57,29 @@ import { UserWebService } from "app/providers/user/user.web.service";
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
+
+const providers: Provider[] = [
+  {
+    provide: ConfigurationService,
+    useClass: isElectronEnabled ? ConfigurationIpcService : ConfigurationWebService
+  },
+  {
+    provide: ElectronService,
+    useClass: isElectronEnabled ? ElectronIpcService : ElectronWebService
+  },
+  {
+    provide: TestService,
+    useClass: isElectronEnabled ? TestIpcService : TestWebService
+  },
+  {
+    provide: UserService,
+    useClass: isElectronEnabled ? UserIpcService : UserWebService
+  },
+  {
+    provide: LoggerService,
+    useClass: ConsoleLoggerService
+  }
+];
 
 @NgModule({
   declarations: [
@@ -82,28 +108,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [
-    {
-      provide: ConfigurationService,
-      useClass: ConfigurationWebService
-    },
-    {
-      provide: ElectronService,
-      useClass: ElectronWebService
-    },
-    {
-      provide: TestService,
-      useClass: TestWebService
-    },
-    {
-      provide: UserService,
-      useClass: UserWebService
-    },
-    {
-      provide: LoggerService,
-      useClass: ConsoleLoggerService
-    }
-  ],
+  providers: providers,
   bootstrap: [AppComponent]
 })
 export class AppModule { }

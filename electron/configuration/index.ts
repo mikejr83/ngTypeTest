@@ -1,35 +1,16 @@
-import * as Store from "electron-store"; // tslint:disable-line
-import * as _ from "lodash";
+import * as electron from "electron";
 
 import { CONFIGURATION } from "../constants";
-import { defaultElectronConfiguration, IElectronConfiguration } from "./electron";
+import { defaultElectronConfiguration, IElectronConfiguration, loadConfiguration } from "./electron";
 import { defaultConfiguration } from "./user";
+import { loadWebConfiguration } from "./web";
 
-export function saveConfiguration(config: IElectronConfiguration) {
-  const store = new Store();
+let configuration: IElectronConfiguration;
 
-  _.forIn(config, (val, key) => {
-    configuration[key] = val;
-    store.set(key, val);
-  });
-
-  configuration.lastUsername = config.lastUsername;
-  store.set(CONFIGURATION.LAST_USERNAME, config.lastUsername);
+if (electron.remote) {
+  configuration = loadConfiguration();
+} else {
+  configuration = loadWebConfiguration();
 }
-
-export function loadConfiguration(): IElectronConfiguration {
-  const config: IElectronConfiguration = _.cloneDeep(defaultElectronConfiguration) as IElectronConfiguration;
-  const store = new Store();
-
-  _.forIn(defaultConfiguration, (val, key) => {
-    config[key] = store.get(key);
-  });
-
-  config[CONFIGURATION.LAST_USERNAME] = store.get(CONFIGURATION.LAST_USERNAME);
-
-  return config;
-}
-
-const configuration: IElectronConfiguration = loadConfiguration();
 
 export default configuration;

@@ -1,10 +1,11 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { OnDestroy } from "@angular/core/src/metadata/lifecycle_hooks";
 
 import { HighlightTag } from "angular-text-input-highlight";
 import * as _ from "lodash";
 import * as moment from "moment";
 import * as momentDurationFormatSetup from "moment-duration-format";
+import * as URI from "urijs";
 
 import { LoggerService } from "app/providers/logging/logger.service";
 import { UserService } from "app/providers/user/user.service";
@@ -15,32 +16,34 @@ import { TestService } from "app/providers/test/test.service";
 
 @Injectable()
 export class TestWebService extends TestService {
-  //////////////////////////////////////////////////////////////////
 
-  // private intervalRef?: number;
-  // private testWords: string[];
-  // private typedWords: string[] = [];
-
-  ///////////////////////////////////////////////////////////////////
-
-  constructor(protected loggerService: LoggerService, protected userService: UserService) {
+  constructor(private http: HttpClient, loggerService: LoggerService, userService: UserService) {
     super(loggerService, userService);
   }
 
   public async loadTestText(): Promise<string[]> {
     return new Promise<string[]>((resolve, reject) => {
-
-        resolve([]);
+      console.log("Go get test data");
+      this.http.post("./test/text", this.userService.user.configuration).subscribe((data: ITestText) => {
+        resolve(this.makeText(data));
+      }, (error) => {
+        this.loggerService.error(error);
+      });
     });
   }
-
-
 
   public async loadResultsForUser(username: string): Promise<Array<ITestResult>> {
     this.loggerService.debug("Looking up the results for a user:", username);
 
     return new Promise<Array<ITestResult>>((resolve, reject) => {
-      resolve([]);
+      const url = new URI("/test");
+      url.query({
+        "username": username
+      });
+
+      this.http.get(url.toString()).subscribe((results: ITestResult[]) => {
+        resolve(results);
+      });
     });
   }
 
@@ -55,5 +58,9 @@ export class TestWebService extends TestService {
       start: this.testStartTime.toDate(),
       username: this.userService.user.username
     };
+
+    this.http.put("/test", result).subscribe((response) => {
+      this.loggerService.debug("Response", response);
+    });
   }
 }

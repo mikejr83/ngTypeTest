@@ -13,7 +13,12 @@ export class ConfigurationIpcService extends ConfigurationService {
 
   constructor() {
     super();
+  }
+
+  public async loadConfig(): Promise<IElectronConfiguration> {
     this.configuration = ipcRenderer.sendSync(EVENTS.RENDERER.CONFIGURATION.LOAD);
+
+    return Promise.resolve(this.configuration);
   }
 
   public async saveCurrentConfig(): Promise<void> {

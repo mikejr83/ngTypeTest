@@ -9,7 +9,7 @@ const noop = (): any => undefined;
 export class ConsoleLoggerService implements Logger {
 
   constructor(private configurationService: ConfigurationService) {
-
+    this.configurationService.loadConfig();
   }
 
   get debug() {
@@ -45,6 +45,10 @@ export class ConsoleLoggerService implements Logger {
   }
 
   private findLevel() {
+    if (!this.configurationService.configuration) {
+      return 2;
+    }
+
     switch (this.configurationService.configuration.logLevel) {
       case "silly":
         return 0;

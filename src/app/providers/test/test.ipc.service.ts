@@ -14,7 +14,6 @@ import { defaultConfiguration } from "app/../../electron/configuration/user";
 import { EVENTS } from "app/../../electron/constants"
 import { ITestResult } from "app/../../electron/test/result";
 import { ITestText } from "app/../../electron/test/testText";
-import { splitTextIntoWords } from "app/../../util/wordCount";
 import { TestService, TestStatus } from "app/providers/test/test.service";
 
 @Injectable()
@@ -47,31 +46,7 @@ export class TestIpcService extends TestService {
     return new Promise<string[]>((resolve, reject) => {
       // Wait for the resoponse for the wikipedia text.
       ipcRenderer.once(EVENTS.MAIN.TEST.ON_WIKIPEDIA_LOADED, (event, testText: ITestText) => {
-        this.loggerService.debug("Got wikipedia test text.");
-
-        this.testTextInfo = testText;
-        const testWords: string[] = [];
-        let textLength = 0;
-        _.forEach(testText.paragraphs, (paragraph) => {
-          this.testHtml += "<p>" + paragraph + "</p>\n";
-
-          textLength += paragraph.length;
-
-          const paragraphWords = splitTextIntoWords(paragraph, true);
-          testWords.push.apply(testWords, paragraphWords);
-        });
-
-        this.testWords = _.filter(testWords, (word) => {
-          return word !== "";
-        });
-
-        this.textLength = textLength;
-
-        this.loggerService.debug("Here are the test words:", this.testWords);
-
-        this.testStatus = TestStatus.ready;
-
-        resolve(testText.paragraphs);
+        resolve(this.makeText(testText));
       });
     });
   }

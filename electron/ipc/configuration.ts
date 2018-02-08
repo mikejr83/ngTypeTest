@@ -3,7 +3,7 @@ import * as _ from "lodash";
 
 import App from "../app";
 import config from "../configuration";
-import { saveConfiguration } from "../configuration";
+import { saveConfiguration } from "../configuration/electron";
 import { IElectronConfiguration } from "../configuration/electron";
 import { EVENTS } from "../constants";
 import logger from "../logging";
@@ -25,7 +25,7 @@ function handleConfigurationLoad(event: Event) {
 
 function handleConfigurationSave(event: Event, configuration: IElectronConfiguration) {
 
-  saveConfiguration(configuration);
+  saveConfiguration(config, configuration);
 
   if (configuration.showDebugTools) {
     App.AppWindow.webContents.openDevTools();

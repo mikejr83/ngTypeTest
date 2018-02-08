@@ -9,6 +9,7 @@ import { ElectronService } from "app/providers/electron/electron.service";
 import { TestService } from "app/providers/test/test.service";
 import { UserService } from "app/providers/user/user.service";
 
+import { IElectronConfiguration } from "../../../../../electron/configuration/electron";
 import { ITestResult } from "../../../../../electron/test/result";
 import { ITestText } from "../../../../../electron/test/testText";
 import { splitTextIntoWords } from "../../../../../util/wordCount";
@@ -84,27 +85,36 @@ export class ResultsComponent implements OnInit {
   }
 
   private async loadTestResults() {
-    const rawResults = await this.testService.loadResultsForUser(this.configService.configuration.lastUsername);
+    let configPromise: Promise<IElectronConfiguration>;
+    if (!this.configService.configuration) {
+      configPromise = this.configService.loadConfig();
+    } else {
+      configPromise = Promise.resolve(this.configService.configuration);
+    }
 
-    const r = [];
-    let totalWPM = 0;
-    let maxWpm = 0;
-    this.results = _.chain(rawResults)
-      .orderBy(["start"], ["desc"])
-      .map((result) => {
-        const newResult = <TestResult>result;
-        newResult.duration = this.calculateDuration(result);
-        newResult.numberOfWords = this.calculateNumberOfWords(result);
-        newResult.wpm = this.calculateWPM(result);
+    configPromise.then(async (config: IElectronConfiguration) => {
+      const rawResults = await this.testService.loadResultsForUser(config.lastUsername);
 
-        totalWPM += newResult.wpm;
-        maxWpm = Math.max(maxWpm, newResult.wpm);
+      const r = [];
+      let totalWPM = 0;
+      let maxWpm = 0;
+      this.results = _.chain(rawResults)
+        .orderBy(["start"], ["desc"])
+        .map((result) => {
+          const newResult = <TestResult>result;
+          newResult.duration = this.calculateDuration(result);
+          newResult.numberOfWords = this.calculateNumberOfWords(result);
+          newResult.wpm = this.calculateWPM(result);
 
-        return newResult;
-      })
-      .value();
+          totalWPM += newResult.wpm;
+          maxWpm = Math.max(maxWpm, newResult.wpm);
 
-    this.maxWpm = maxWpm;
-    this.averageWpm = (totalWPM / rawResults.length);
+          return newResult;
+        })
+        .value();
+
+      this.maxWpm = maxWpm;
+      this.averageWpm = (totalWPM / rawResults.length);
+    });
   }
 }

@@ -12,10 +12,18 @@ export abstract class UserService {
 
   constructor(protected configurationService: ConfigurationService, protected loggerService: LoggerService, protected translateService: TranslateService) {
     // Check to see if there is a lastUsername defined. If it is then we'll load up the last user of the app.
-    if (configurationService.configuration.lastUsername !== undefined) {
+    if (configurationService.configuration && configurationService.configuration.lastUsername !== undefined) {
       loggerService.debug("Looks like there was a previous user...");
 
       this.loginUser(configurationService.configuration.lastUsername);
+    } else if (!configurationService.configuration) {
+      configurationService.loadConfig().then(() => {
+        if (configurationService.configuration.lastUsername !== undefined) {
+          loggerService.debug("Looks like there was a previous user...");
+
+          this.loginUser(configurationService.configuration.lastUsername);
+        }
+      });
     }
   }
 
