@@ -6,7 +6,7 @@ import { ITextWord } from "app/../../electron/test/word";
 import { splitTextIntoWords } from "app/../../util/wordCount";
 
 import { LoggerService } from "app/providers/logging/logger.service";
-import { TestService, TestStatus } from "app/providers/test.service";
+import { TestService, TestStatus } from "app/providers/test/test.service";
 
 
 @Directive({

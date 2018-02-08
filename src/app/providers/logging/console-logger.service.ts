@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-import { ConfigurationService } from "app/providers/configuration.service";
+import { ConfigurationService } from "app/providers/configuration/configuration.service";
 import { Logger } from "./logger.service";
 
 const noop = (): any => undefined;

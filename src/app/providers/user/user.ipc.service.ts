@@ -2,25 +2,20 @@ import { Injectable } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { ipcRenderer } from "electron";
 
-import { ConfigurationService } from "app/providers/configuration.service";
+import { ConfigurationService } from "app/providers/configuration/configuration.service";
 import { LoggerService } from "app/providers/logging/logger.service";
 
-import { defaultConfiguration } from "../../../electron/configuration/user";
-import { EVENTS } from "../../../electron/constants";
-import { IUser } from "../../../electron/user/user";
+import { defaultConfiguration } from "app/../../electron/configuration/user";
+import { EVENTS } from "app/../../electron/constants";
+import { IUser } from "app/../../electron/user/user";
+import { UserService } from "app/providers/user/user.service";
 
 
 @Injectable()
-export class UserService {
-  public user: IUser;
+export class UserIpcService extends UserService {
 
-  constructor(private configurationService: ConfigurationService, private loggerService: LoggerService, private translateService: TranslateService) {
-    // Check to see if there is a lastUsername defined. If it is then we'll load up the last user of the app.
-    if (configurationService.configuration.lastUsername !== undefined) {
-      loggerService.debug("Looks like there was a previous user...");
-
-      this.loginUser(configurationService.configuration.lastUsername);
-    }
+  constructor(configurationService: ConfigurationService, loggerService: LoggerService, translateService: TranslateService) {
+    super(configurationService, loggerService, translateService);
   }
 
   /**
@@ -76,24 +71,6 @@ export class UserService {
     })
   }
 
-  /**
-   * Looks up a user by the username and sets the service's information if the user exists.
-   * @param username The user's username.
-   */
-  public loginUser(username: string): Promise<void> {
-    // Load the user.
-    return this.loadUser(username).then((user: IUser) => {
-      this.setCurrentUser(user);
-    });
-  }
-
-  public logoutCurrentUser() {
-    this.loggerService.debug("Logging out user! Setting user service user to undefined and clearing the config's lastUsername.");
-    this.user = undefined;
-    this.configurationService.configuration.lastUsername = undefined;
-    this.configurationService.saveCurrentConfig();
-  }
-
   public registerUser(email: string, name: string): Promise<IUser> {
     // Create a user object
     this.user = {
@@ -112,29 +89,5 @@ export class UserService {
         this.setCurrentUser(user);
       })
     });
-  }
-
-  private setCurrentUser(user: IUser) {
-    this.loggerService.debug("Setting the current user:", user);
-    // Set the current user
-    this.user = user;
-
-    // Check to see if the user is actually a real user
-    if (this.user === null) {
-      // Null was returned by the call. Logout any user that was "previous" as they don't exist in the db.
-      this.logoutCurrentUser();
-    } else {
-      // We got a valid user back so let's make sure they also have a valid configuration.
-      if (this.user.configuration === undefined || this.user.configuration === null) {
-        this.user.configuration = Object.assign({}, defaultConfiguration);
-      }
-
-      this.loggerService.debug("Setting the last user.", this.user);
-      // Tell the app who the last user is
-      this.configurationService.configuration.lastUsername = this.user.username;
-      this.configurationService.saveCurrentConfig();
-
-      this.translateService.use(this.user.configuration.culture);
-    }
   }
 }

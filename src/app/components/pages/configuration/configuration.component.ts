@@ -9,9 +9,9 @@ import { IElectronConfiguration } from "../../../../../electron/configuration/el
 import { defaultConfiguration } from "../../../../../electron/configuration/user";
 import { IUser } from "../../../../../electron/user/user";
 
-import { ConfigurationService } from "app/providers/configuration.service";
+import { ConfigurationService } from "app/providers/configuration/configuration.service";
 import { LoggerService } from "app/providers/logging/logger.service";
-import { UserService } from "app/providers/user.service";
+import { UserService } from "app/providers/user/user.service";
 
 
 @Component({

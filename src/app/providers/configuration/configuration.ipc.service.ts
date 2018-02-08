@@ -3,14 +3,16 @@ import { OnDestroy } from "@angular/core/src/metadata/lifecycle_hooks";
 
 import { Event, ipcRenderer } from "electron";
 
-import { IElectronConfiguration } from "../../../electron/configuration/electron";
-import { EVENTS } from "../../../electron/constants";
+import { IElectronConfiguration } from "app/../../electron/configuration/electron";
+import { EVENTS } from "app/../../electron/constants";
+import { ConfigurationService } from "app/providers/configuration/configuration.service";
 
 @Injectable()
-export class ConfigurationService {
+export class ConfigurationIpcService extends ConfigurationService {
   configuration: IElectronConfiguration;
 
   constructor() {
+    super();
     this.configuration = ipcRenderer.sendSync(EVENTS.RENDERER.CONFIGURATION.LOAD);
   }
 

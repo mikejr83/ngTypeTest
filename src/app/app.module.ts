@@ -22,7 +22,6 @@ import { ConfigurationComponent } from "app/components/pages/configuration/confi
 import { ResultsComponent } from "app/components/pages/results/results.component";
 import { TypingTestComponent } from "app/components/pages/typing-test/typing-test.component";
 import { MenuComponent } from "app/components/ui/menu/menu.component";
-import { TesterComponent } from "app/components/ui/tester/tester.component";
 import { UserEditorComponent } from "app/components/ui/user-editor/user-editor.component";
 import { UserLogonComponent } from "app/components/ui/user-logon/user-logon.component";
 
@@ -31,12 +30,25 @@ import { TestTextareaDirective } from "app/directives/tester/test-textarea.direc
 import { WebviewDirective } from "app/directives/webview.directive";
 
 // Providers
-import { ConfigurationService } from "app/providers/configuration.service";
-import { ElectronService } from "app/providers/electron.service";
+import { ConfigurationIpcService } from "app/providers/configuration/configuration.ipc.service";
+import { ConfigurationService } from "app/providers/configuration/configuration.service";
+import { ConfigurationWebService } from "app/providers/configuration/configuration.web.service";
+
+import { ElectronService } from "app/providers/electron/electron.service";
+import { ElectronWebService } from "app/providers/electron/electron.web.service";
+
 import { ConsoleLoggerService } from "app/providers/logging/console-logger.service";
 import { LoggerService } from "app/providers/logging/logger.service";
-import { TestService } from "app/providers/test.service";
-import { UserService } from "app/providers/user.service";
+
+import { TestIpcService } from "app/providers/test/test.ipc.service";
+import { TestService } from "app/providers/test/test.service";
+import { TestWebService } from "app/providers/test/test.web.service";
+
+import { UserIpcService } from "app/providers/user/user.ipc.service";
+import { UserService } from "app/providers/user/user.service";
+import { UserWebService } from "app/providers/user/user.web.service";
+
+
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -50,7 +62,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeComponent,
     MenuComponent,
     ResultsComponent,
-    TesterComponent,
     TestTextareaDirective,
     TypingTestComponent,
     UserEditorComponent,
@@ -72,10 +83,22 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
   ],
   providers: [
-    ConfigurationService,
-    ElectronService,
-    TestService,
-    UserService,
+    {
+      provide: ConfigurationService,
+      useClass: ConfigurationWebService
+    },
+    {
+      provide: ElectronService,
+      useClass: ElectronWebService
+    },
+    {
+      provide: TestService,
+      useClass: TestWebService
+    },
+    {
+      provide: UserService,
+      useClass: UserWebService
+    },
     {
       provide: LoggerService,
       useClass: ConsoleLoggerService

@@ -3,9 +3,9 @@ import * as jquery from "jquery";
 
 import { splitTextIntoWords } from "app/../../util/wordCount";
 
-import { ElectronService } from "app/providers/electron.service";
-import { TestService } from "app/providers/test.service";
-import { UserService } from "app/providers/user.service";
+import { ElectronService } from "app/providers/electron/electron.service";
+import { TestService } from "app/providers/test/test.service";
+import { UserService } from "app/providers/user/user.service";
 
 @Component({
   selector: "app-typing-test",

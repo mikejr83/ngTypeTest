@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms/src/directives/ng_form";
 
-import { ElectronService } from "app/providers/electron.service";
+import { ElectronService } from "app/providers/electron/electron.service";
 import { LoggerService } from "app/providers/logging/logger.service";
-import { UserService } from "app/providers/user.service";
+import { UserService } from "app/providers/user/user.service";
 
 @Component({
   selector: "user-logon",

@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 
-import { ElectronService } from "app/providers/electron.service";
+import { ElectronService } from "app/providers/electron/electron.service";
 import { LoggerService } from "app/providers/logging/logger.service";
 
 @Component({
@@ -19,9 +19,9 @@ export class AppComponent {
     if (electronService.isElectron()) {
       this.logger.debug("Mode electron");
       // Check if electron is correctly injected (see externals in webpack.config.js)
-      this.logger.debug("ipcRenderer", electronService.ipcRenderer);
+      // this.logger.debug("ipcRenderer", electronService.ipcRenderer);
       // Check if nodeJs childProcess is correctly injected (see externals in webpack.config.js)
-      this.logger.debug("childProcess", electronService.childProcess);
+      // this.logger.debug("childProcess", electronService.childProcess);
     } else {
       this.logger.debug("Mode web");
     }

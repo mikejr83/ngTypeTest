@@ -4,10 +4,10 @@ import { HighlightTag } from "angular-text-input-highlight";
 import * as _ from "lodash";
 import * as moment from "moment";
 
-import { ConfigurationService } from "app/providers/configuration.service";
-import { ElectronService } from "app/providers/electron.service";
-import { TestService } from "app/providers/test.service";
-import { UserService } from "app/providers/user.service";
+import { ConfigurationService } from "app/providers/configuration/configuration.service";
+import { ElectronService } from "app/providers/electron/electron.service";
+import { TestService } from "app/providers/test/test.service";
+import { UserService } from "app/providers/user/user.service";
 
 import { ITestResult } from "../../../../../electron/test/result";
 import { ITestText } from "../../../../../electron/test/testText";
