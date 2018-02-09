@@ -1,0 +1,523 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ngType Tester</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">ngType Tester</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> ngType Tester</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<h1 id="ngtyping-test">ngTyping Test</h1>
+				<p>A typing test written in Angular.IO and demonstrated in Electron.</p>
+				<h2 id="overview">Overview</h2>
+				<p>This application presents a demonstration of the use of TypeScript, Angular.IO, and Electron. The use of these three technologies together allows a developer to rapidly prototype and build out an application that can run on various OSes by harnessing the power of NodeJS and Electron. Semi-native packages can be created for Windows, MacOS, and Linux distributions with simple commands.</p>
+				<p>This demo shows the application running in an Electron environment. The Electron environment is nothing more than a specially constructed version of a browser window, specifically one built around Chromium, that runs the &quot;web-application&quot; locally. With considerations during the development of the application it could also be hosted on a standard web-server. This gives the solution an added level of flexibility, those desiring an application that can run offline have an option for the Electron hosted version while thin-clients have the option of using the hosted version. The development and deployment of this type of application benefits from the aspect that very little code changes are required across each version.</p>
+				<hr>
+				<p>This documentation will cover the techical level of this demonstration. </p>
+				<h2 id="main-project">Main Project</h2>
+				<p>The root folder for this project contains a number of configuration files for building the project. Focusing on each of these files would require an in-depth discussion of the technology used to operate this project. Instead of covering each file in a detailed manner this documentation will ennumerate and briefly describe what their function as opposed to a detailed analysis of the contents of the files.</p>
+				<h3 id="configuration-files">Configuration Files</h3>
+				<table>
+					<thead>
+						<tr>
+							<th>File</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>.angular-cli.json</strong></td>
+							<td>Used for the configuration of the Angular-CLI. This configuration file is used to describe the project to the Angular-CLI for building, etc.</td>
+						</tr>
+						<tr>
+							<td><strong>.editorconfig</strong></td>
+							<td>This file is used to describe basic IDE editor settings which should allow the code to be stylisticaly consistent across developer and IDEs.</td>
+						</tr>
+						<tr>
+							<td><strong>.gitignore</strong></td>
+							<td>Files to be ignored by source control are listed here.</td>
+						</tr>
+						<tr>
+							<td><strong>.travis.yml</strong></td>
+							<td>CI buil configuration.</td>
+						</tr>
+						<tr>
+							<td><strong>electron-builder.json</strong></td>
+							<td>Configuration for the Electron application and build.</td>
+						</tr>
+						<tr>
+							<td><strong>karma.config.js</strong></td>
+							<td>Unit test configuration.</td>
+						</tr>
+						<tr>
+							<td><strong>package-lock.json</strong></td>
+							<td>Used by NPM to resolve dependencies in a quick format. Helps insure that anyone consuming this project gets the same dependencies.</td>
+						</tr>
+						<tr>
+							<td><strong>package.json</strong></td>
+							<td>Used to describe the project. Basic NPM configuration.</td>
+						</tr>
+						<tr>
+							<td><strong>postcss.config.js</strong></td>
+							<td>Configures...</td>
+						</tr>
+						<tr>
+							<td><strong>protractor.config.js</strong></td>
+							<td>E2E test configuration</td>
+						</tr>
+						<tr>
+							<td><strong>tsconfig.json</strong></td>
+							<td>TypeScript compilation configuration.</td>
+						</tr>
+						<tr>
+							<td><strong>tslint.json</strong></td>
+							<td>Configuration for TSLint (linting for TypeScript).</td>
+						</tr>
+						<tr>
+							<td><strong>webpack.config.js</strong></td>
+							<td>Webpack configuration.</td>
+						</tr>
+					</tbody>
+				</table>
+				<h3 id="electron-files">Electron Files</h3>
+				<p>It would be wise to note here that there is a single file for the Electron application included in the root of the project. The <code>main.ts</code> file is the base entry point for the Electron application. It is used to configure the events to be handled by the Electron application sub-system and handle creating the window which is displayed.</p>
+				<h3 id="other-files-and-folders">Other Files and Folders</h3>
+				<p>Each folder will contain a root <code>README.md</code> file. These files are handled via the GitHub documentation engine such that if you visit any of the folders via the GitHub website they will be displayed for that folder at the top of the page. This project is intended to do the same. Additional files, <code>README.doc.md</code> files will be included in order to provide supplemental technical information about the contents of the folder.</p>
+				<h1 id="electron-application">Electron Application</h1>
+				<p>This folder contains all the support files for the Electron/Server-side application. These are actually used at runtime.</p>
+				<h2 id="electron-app">Electron App</h2>
+				<p>The Electron app is managed through <code>app.ts</code>. This file handles setting up the Electron application, registering the basic events, and loading the main application page.</p>
+				<h3 id="constants">Constants</h3>
+				<p>Every application will have static string values used for configuration or events names. This module exports a two hashes, one for all the event names and one for configuration keys. By using a hash where the values are a string it allows us to &quot;strongly type&quot; those strings so that they will be insured to be the same in all locations which need to reference them.</p>
+				<p><em>Note: For all <code>README.md</code> files further down in the directory structure, their root header should be set to two hash signs: ##</em></p>
+				<h2 id="configuration">Configuration</h2>
+				<p>Application configuration is handled in several ways. The app can pull configuration from configuration files, configuration tied to a specific user, and through the launch of the application on the CLI.</p>
+				<h3 id="root-module">Root Module</h3>
+				<p>Contains the default export for this &quot;namespace&quot;. It is the configuration for the application.</p>
+				<h3 id="cli">CLI</h3>
+				<p>The <code>cli.ts</code> file exports a module to get settings from the CLI and configure them on the configuration object.</p>
+				<h3 id="electron">Electron</h3>
+				<p>The electron module in configuration contains all the functionality to manage configuration of the Electron application. This is a meta-level configuration. These configurations are applicable to all users.</p>
+				<p>The module exports methods for loading and saving this configuration.</p>
+				<h3 id="user">User</h3>
+				<p>The user module in the configuration section is used for setting up the definition of configurations for specific users. Also contains a default set of configuration values.</p>
+				<h3 id="web">Web</h3>
+				<p>The web module provides functions for loading and saving configurations while the application is running from a web server. This is necessary because the manner in which the configuration is saved differs between the two.</p>
+				<h2 id="inter-process-communications">Inter-Process Communications</h2>
+				<p>Inter-process communication occurs in Electron when the renderer process, the process hosting the client application, talks to the behind the scenes main process, the Electron process. This process to process communication allows the web app to perform long running tasks outside of the renderering thread. This keeps the UI responsive. It also allows the code to be logically split between a server and client architecture. This means that in this solution a web application can be hosted within the renderer process and with very little change be hosted on a standard application server.</p>
+				<h3 id="root">Root</h3>
+				<p>The default export of this &quot;namespace&quot; is a function to register the IPC listeners for each of the individual modules.</p>
+				<h3 id="configuration">Configuration</h3>
+				<p>The configuration module handles all the IPC messaging for configuration related functions. The loading and saving of configuration is handled through this module. </p>
+				<h3 id="test">Test</h3>
+				<p>IPC listeners related to the testing functionality. This module includes the listeners for getting test text, saving test results, and retrieving results for a user.</p>
+				<h2 id="logging">Logging</h2>
+				<p>The Electron app allows for the use of the logging methods on the <code>console</code> object. This is not ideal as those messages are only sent to the console. While helpful in debug and development environments, a full fledged logging framework needs to be available for production use.</p>
+				<p>This project chooses to use the Winston logging tools. These tools are configured via the classes in this folder.</p>
+				<p>The use of the <code>index.ts</code> file and a default export within the file allows a very simplistic import into any application file requiring logging support.</p>
+				<h2 id="repository">Repository</h2>
+				<p>The <em>repository</em> folder contains modules for data repository actions. These modules deal with connecting to a data store and performing CRUD operations.</p>
+				<h3 id="root">Root</h3>
+				<p>The default module for this folder contains the basic ability to connect to the data-store. This project uses a data-store which mimics MongoDB. The API for the external module is exactly the same as the MongoDB driver for NodeJS. This allows this example to easily switch over to using MongoDB.</p>
+				<h3 id="test-results-test-results-">Test-Results <em>(test-results)</em></h3>
+				<p>The <em>testResults</em> module contains the operations for working with test result objects. It supports saving/logging a new result to the data store. It also provides functionality for loading a user&#39;s results.</p>
+				<h3 id="user">User</h3>
+				<p>The <em>user</em> module contains the data store operations for user objects. This includes loading, creating, updating.</p>
+				<h2 id="test">Test</h2>
+				<p>The <em>test</em> folder contains all the modules relating to the <strong>Test</strong> object. This includes the definition for the object structure as well as various other supporting objects.</p>
+				<h3 id="result">Result</h3>
+				<p>The <code>ITestResult</code> interface defined in *result.ts` defines the structure of a test result.</p>
+				<h3 id="test-text-info">Test Text Info</h3>
+				<p>The file <em>testText.ts</em> is the module which exports an enumeration and interface for the test info. The enumeration, <code>TestTextLocation</code>, details where the test text was pulled. This is useful when introducing more places which could provide test text examples. The <code>ITestText</code> interface is used to define the text used for testing the user. </p>
+				<h3 id="word">Word</h3>
+				<p>The <em>word</em> module provides a utility interface for identifying error&#39;d words within the text.</p>
+				<h2 id="user">User</h2>
+				<p>The user folder contains all modules pertaining to the users.</p>
+				<h3 id="user">User</h3>
+				<p>The user module simply contains the interface for defining the user object&#39;s data structure.</p>
+				<h1 id="project-support-support-folder-">Project Support (Support folder)</h1>
+				<p>The <code>support</code> folder contains any utilities and helpers to get the project up and running. These resources are not required for the actual functioning of the application but are intended to facilitate any of the functions for supporting builds, documentation, etc.</p>
+				<h2 id="typescript">TypeScript</h2>
+				<p>All the items within this folder should be TypeScript files. A special task, <code>build-support</code>, has been created to compile this directory using the <code>tsconfig.json</code> file within the directory.</p>
+				<h2 id="file-descriptions">File Descriptions</h2>
+				<table>
+					<thead>
+						<tr>
+							<th>File</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>concat-readme.ts</td>
+							<td>Used to concatenate the <code>README.md</code> and <code>README.doc.md</code> files into a single markdown file.</td>
+						</tr>
+						<tr>
+							<td>create-pdf.ts</td>
+							<td>Used to take a markdown file and turn it into a PDF document.</td>
+						</tr>
+						<tr>
+							<td>doc-utils.ts</td>
+							<td>A set of utility functions used to concatenate the markdown files and produce a TOC.</td>
+						</tr>
+						<tr>
+							<td>tsconfig.json</td>
+							<td>Since the files here are support only the way they are compiled is a little different than the rest of the project. This config file lets the TypeScript compilation take place a little differently.</td>
+						</tr>
+					</tbody>
+				</table>
+				<h1 id="utilities">Utilities</h1>
+				<p>These modules export utility functions which are used outside of any server/client aspect.</p>
+				<h1 id="license-information">License Information</h1>
+				<p>Copyright 2018 - Michael Gardner</p>
+				<p>This software is released under the MIT License:</p>
+				<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+				<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+				<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+				<hr>
+				<p>Portions of this code base are Copyright 2017 - Maxime GRIS</p>
+				<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+				<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+				<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_e2e_app_e2e_spec_.html">"e2e/app.e2e-<wbr>spec"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_e2e_app_po_.html">"e2e/app.po"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_electron_app_.html">"electron/app"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_electron_configuration_cli_.html">"electron/configuration/cli"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_electron_configuration_electron_.html">"electron/configuration/electron"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_electron_configuration_index_.html">"electron/configuration/index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_electron_configuration_user_.html">"electron/configuration/user"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_electron_configuration_web_.html">"electron/configuration/web"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_electron_constants_.html">"electron/constants"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_electron_ipc_configuration_.html">"electron/ipc/configuration"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_electron_ipc_index_.html">"electron/ipc/index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_electron_ipc_test_.html">"electron/ipc/test"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_electron_ipc_user_.html">"electron/ipc/user"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_electron_logging_index_.html">"electron/logging/index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_electron_repository_index_.html">"electron/repository/index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_electron_repository_testresult_.html">"electron/repository/test<wbr>Result"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_electron_repository_user_.html">"electron/repository/user"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_electron_test_result_.html">"electron/test/result"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_electron_test_testtext_.html">"electron/test/test<wbr>Text"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_electron_test_word_.html">"electron/test/word"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_electron_user_user_.html">"electron/user/user"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_main_.html">"main"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_server_main_.html">"server/main"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_app_routing_module_.html">"src/app/app-<wbr>routing.module"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_app_component_.html">"src/app/app.component"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_app_component_spec_.html">"src/app/app.component.spec"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_app_module_.html">"src/app/app.module"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_components_home_home_component_.html">"src/app/components/home/home.component"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_components_home_home_component_spec_.html">"src/app/components/home/home.component.spec"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_components_pages_configuration_configuration_component_.html">"src/app/components/pages/configuration/configuration.component"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_components_pages_configuration_configuration_component_spec_.html">"src/app/components/pages/configuration/configuration.component.spec"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_components_pages_results_results_component_.html">"src/app/components/pages/results/results.component"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_components_pages_results_results_component_spec_.html">"src/app/components/pages/results/results.component.spec"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_components_pages_typing_test_typing_test_component_.html">"src/app/components/pages/typing-<wbr>test/typing-<wbr>test.component"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_components_pages_typing_test_typing_test_component_spec_.html">"src/app/components/pages/typing-<wbr>test/typing-<wbr>test.component.spec"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_components_ui_menu_menu_component_.html">"src/app/components/ui/menu/menu.component"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_components_ui_menu_menu_component_spec_.html">"src/app/components/ui/menu/menu.component.spec"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_components_ui_user_editor_user_editor_component_.html">"src/app/components/ui/user-<wbr>editor/user-<wbr>editor.component"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_components_ui_user_editor_user_editor_component_spec_.html">"src/app/components/ui/user-<wbr>editor/user-<wbr>editor.component.spec"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_components_ui_user_logon_user_logon_component_.html">"src/app/components/ui/user-<wbr>logon/user-<wbr>logon.component"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_components_ui_user_logon_user_logon_component_spec_.html">"src/app/components/ui/user-<wbr>logon/user-<wbr>logon.component.spec"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_directives_tester_test_textarea_directive_.html">"src/app/directives/tester/test-<wbr>textarea.directive"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_directives_webview_directive_.html">"src/app/directives/webview.directive"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_providers_configuration_configuration_ipc_service_.html">"src/app/providers/configuration/configuration.ipc.service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_providers_configuration_configuration_service_.html">"src/app/providers/configuration/configuration.service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_providers_configuration_configuration_web_service_.html">"src/app/providers/configuration/configuration.web.service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_providers_electron_electron_ipc_service_.html">"src/app/providers/electron/electron.ipc.service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_providers_electron_electron_service_.html">"src/app/providers/electron/electron.service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_providers_electron_electron_web_service_.html">"src/app/providers/electron/electron.web.service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_providers_logging_console_logger_service_.html">"src/app/providers/logging/console-<wbr>logger.service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_providers_logging_logger_service_.html">"src/app/providers/logging/logger.service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_providers_test_test_ipc_service_.html">"src/app/providers/test/test.ipc.service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_providers_test_test_service_.html">"src/app/providers/test/test.service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_providers_test_test_web_service_.html">"src/app/providers/test/test.web.service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_providers_user_user_ipc_service_.html">"src/app/providers/user/user.ipc.service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_providers_user_user_service_.html">"src/app/providers/user/user.service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_providers_user_user_web_service_.html">"src/app/providers/user/user.web.service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_environments_index_.html">"src/environments/index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_environments_index_prod_.html">"src/environments/index.prod"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_main_.html">"src/main"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_polyfills_.html">"src/polyfills"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_test_.html">"src/test"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_support_concat_readme_.html">"support/concat-<wbr>readme"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_support_create_pdf_.html">"support/create-<wbr>pdf"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_support_doc_utils_.html">"support/doc-<wbr>utils"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_util_wikipedia_.html">"util/wikipedia"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_util_wordcount_.html">"util/word<wbr>Count"</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

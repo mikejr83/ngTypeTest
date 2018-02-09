@@ -11,9 +11,6 @@
 /support/*.js
 /support/*.js.map
 
-# compiled documentation
-/docs
-
 # dependencies
 /node_modules
 
