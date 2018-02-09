@@ -24,8 +24,8 @@
         "docs": "npm-run-all typedoc createPDF",
         "postdocs": "rimraf .tmp",
 
-        "typedoc": "typedoc --name \"ngType Tester\" --readme ./.tmp/README-TOC.md --module commonjs --out docs src/",
-        "typedoc:min": "typedoc --theme node_modules/typedoc-default-themes/bin/minimal --out docs src/",
+        "typedoc": "typedoc --name \"ngType Tester\" --readme ./.tmp/README-TOC.md --target ES6 --exclude \"**/node_modules/**\" --module commonjs --out docs ./",
+        "typedoc:min": "typedoc --theme node_modules/typedoc-default-themes/bin/minimal --name \"ngType Tester\" --readme ./.tmp/README-TOC.md --target ES6 --exclude \"**/node_modules/**\" --out docs ./",
         "ng": "ng",
         "lint": "ng lint",
 
