@@ -22,21 +22,32 @@ crossorigin="anonymous"></script>
   }
 </style>`;
 
+/**
+ * Load all the markdown files within a path
+ *
+ * @export
+ * @param {string} basePath The base path where to look for markdown files.
+ * @returns {string[]} Array of all markdown files.
+ */
 export function loadFileList(basePath: string): string[] {
   // Look for all the markdown files that have a suffix of doc.md.
   let files = glob.sync(path.join(basePath, "**/*.md"), {
     ignore: [
-      "node_modules/**"
+      "node_modules/**",
+      "dist/**"
     ],
     nosort: true
   });
 
+  // Filter the files down to those that do not include the root README.md file and the LICENSE.MD
   files = _.filter(files, (file, index) => {
     return file.toUpperCase() !== "README.MD" && file.toUpperCase() !== "LICENSE.MD";
   });
 
+  // Push the LICENSE.md file onto the end of the array.
   files.push("LICENSE.md");
 
+  // return our list of files.
   return files;
 }
 
@@ -58,6 +69,13 @@ async function concatenateBuffers(combinedStream: StreamConcat): Promise<string>
   });
 }
 
+/**
+ * Concatenat all the readme files into a single readme document.
+ * @param basePath The base path to start looking for markdown.
+ * @param outputPath The location where the concatenated file should be output
+ * @param insertTOC Should a table of contents be inserted into the document.
+ * @param callback Optional callback. FYI, promises are better.
+ */
 export async function concatenateReadmeFiles(basePath?: string, outputPath?: string, insertTOC?: boolean, callback?: any): Promise<void> {
   outputPath = outputPath || "./.tmp/README.md";
   // Need to get the list of files that will be concatenated.
