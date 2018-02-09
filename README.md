@@ -1,17 +1,12 @@
 [![Angular Logo](./logo-angular.jpg)](https://angular.io/) [![Electron Logo](./logo-electron.jpg)](https://electron.atom.io/)
 
-[![Travis Build Status][build-badge]][build]
-[![Dependencies Status][dependencyci-badge]][dependencyci]
+
 [![Make a pull request][prs-badge]][prs]
 [![License](http://img.shields.io/badge/Licence-MIT-brightgreen.svg)](LICENSE.md)
 
-[![Watch on GitHub][github-watch-badge]][github-watch]
-[![Star on GitHub][github-star-badge]][github-star]
-[![Tweet][twitter-badge]][twitter]
-
 # Introduction
 
-Bootstrap and package your project with Angular 5(+) and Electron (Typescript + SASS + Hot Reload) for creating Desktop applications.
+This application 
 
 Currently runs with:
 
@@ -41,13 +36,6 @@ npm install
 ```
 
 There is an issue with `yarn` and `node_modules` that are only used in electron on the backend when the application is built by the packager. Please use `npm` as dependencies manager.
-
-If you want to generate Angular components with Angular-cli , you **MUST** install `@angular/cli` in npm global context.  
-Please follow [Angular-cli documentation](https://github.com/angular/angular-cli) if you had installed a previous version of `angular-cli`.
-
-``` bash
-npm install -g @angular/cli
-```
 
 ## To build for development
 
@@ -107,6 +95,8 @@ You can run tests with the command lines below :
 - **in another terminal window** -> Then, launch Protractor (E2E framework): `npm run e2e`
 
 # Contributors 
+
+This project was built off of a boiler plate Angular & Electron app: [https://github.com/maximegris/angular-electron](https://github.com/maximegris/angular-electron)
 
 [<img alt="Maxime GRIS" src="https://avatars2.githubusercontent.com/u/10827551?v=3&s=117" width="117">](https://github.com/maximegris) |
 :---:

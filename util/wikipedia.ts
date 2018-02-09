@@ -9,6 +9,11 @@ import logger from "../electron/logging";
 import { ITestText, TestTextLocation } from "../electron/test/testText";
 import { findWordCount, splitTextIntoWords } from "./wordCount";
 
+/**
+ * Utility to pull text from Wikipedia. Uses the user's configuration to
+ * determine from which Wikipedia URL to grab from and how much text to gather.
+ * @param config User's configuration for determining settings for wikipedia.
+ */
 export async function loadFromWikipedia(config: IUserConfiguration) {
   // Get the page content from the wikipedia url.
   const pageContentResponse = await rp.get({
@@ -79,11 +84,13 @@ export async function loadFromWikipedia(config: IUserConfiguration) {
 
   logger.silly("Text to use:", paragraphsToUse);
 
+  // Build an object to hold the test text
   const testTextResult: ITestText = {
     locationDescription: pageContentResponse.request.href,
     paragraphs: paragraphsToUse,
     textLocationType: TestTextLocation.Wikipedia
   };
 
+  // Send off the result!
   return testTextResult;
 }

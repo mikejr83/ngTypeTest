@@ -13,4 +13,7 @@ if (electron.remote) {
   configuration = loadWebConfiguration();
 }
 
+/**
+ * Configuration for the application
+ */
 export default configuration;
