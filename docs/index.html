@@ -192,6 +192,32 @@
 				<p>The user folder contains all modules pertaining to the users.</p>
 				<h3 id="user">User</h3>
 				<p>The user module simply contains the interface for defining the user object&#39;s data structure.</p>
+				<h1 id="anuglar-client-application">Anuglar Client Application</h1>
+				<p>The front-end of this application is an Angular web applicatoin.</p>
+				<p>The <code>src/</code> folder in this project contains all the files associated with the Angular web application. The main entry points, root styles, TypeScript configuration, etc are found in the top level.</p>
+				<h2 id="angular-application-app-">Angular Application <em>(app)</em></h2>
+				<p>The Angular application is contained within the <code>app/</code> folder. </p>
+				<p>The folder is broken down into folders containing components, directives, and providers. The main application modules are included here as well.</p>
+				<p>####ication Component</p>
+				<p>In the <code>app.component.ts</code> file the <code>ApplicationComponent</code> is defined. This is the root of the Angular application. The component&#39;s view contains the upper application menu and the Angular router output.</p>
+				<h4 id="application-module">Application Module</h4>
+				<p>The <code>AppModule</code> imports all the components and declarations for the application.</p>
+				<p>Within the <code>app.module.ts</code> is the collection of all the providers used by the Angular application. Since this application could be run inside Electron or via a web application server this file handles building up the special array of providers which change based on where the application is run. This array of providers define the abstract class for a provider and then sets up the class to use as its instance. Depending on the operating scope the instance class to use change between IPC and Web classes.</p>
+				<h3 id="providers">Providers</h3>
+				<p><em>NOTE, instead of defining a README.md for each directory set of providers this README.md file will cover the discussion of all providers at the root level</em></p>
+				<h4 id="configuration">Configuration</h4>
+				<p>The configuration provider is used to handle the coordination of configuration information. Consumers of this provider can load the current configuration and instruct the application to persist the current configuration.</p>
+				<h4 id="logging">Logging</h4>
+				<p>The logging provider is used to provide logging services to all aspects of the client application. This is the only provider which does not use the IPC and Web pattern. This could change with the introduction of some use case where it is necessary to log client messages to the back-end. If this is the case the pattern shown for IPC vs Web could be extended further for handling the aded complexity.</p>
+				<h4 id="test">Test</h4>
+				<p>This provider, the Test provider, is used for providing the typing test information and functions. <strong>This is not used for unit or e2e testing.</strong> The provider allows for loading a new test and test text, retrieving the list of results for a user, and saving a completed test.</p>
+				<h4 id="user">User</h4>
+				<p>The user provider is used to provide basic user operations to the application. The registration, updating, and login of users is handled here.</p>
+				<h2 id="assets">Assets</h2>
+				<p>All static assets for the application are included here. Generally static assets would be images. </p>
+				<p>Localization files are considered static assets. These are located in <code>i18n</code>. The JSON files in the folder are named according to the culture code for which they provide their localizations. The structures of the JSON must be exactly the same between all files. Changes to the structure will necessitate changes to the component views.</p>
+				<h2 id="environments">Environments</h2>
+				<p>This folder provides modules for alerting the application to the fact that is operating either in development or production mode.</p>
 				<h1 id="project-support-support-folder-">Project Support (Support folder)</h1>
 				<p>The <code>support</code> folder contains any utilities and helpers to get the project up and running. These resources are not required for the actual functioning of the application but are intended to facilitate any of the functions for supporting builds, documentation, etc.</p>
 				<h2 id="typescript">TypeScript</h2>
