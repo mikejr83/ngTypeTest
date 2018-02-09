@@ -4,7 +4,7 @@ The Angular application is contained within the `app/` folder.
 
 The folder is broken down into folders containing components, directives, and providers. The main application modules are included here as well.
 
-####ication Component
+#### Application Component
 
 In the `app.component.ts` file the `ApplicationComponent` is defined. This is the root of the Angular application. The component's view contains the upper application menu and the Angular router output.
 
