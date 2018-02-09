@@ -1,5 +1,4 @@
 import { app, BrowserWindow, screen } from "electron";
-import * as electronReload from "electron-reload";
 import * as path from "path";
 
 import App from "./electron/app";
@@ -13,7 +12,7 @@ updateFromArguments();
 // If the configuration is set to serve allow hot reloading of electron - NOTE NOT WORKING RIGHT NOW.
 if (config.serve) {
   logger.debug("Starting electron-reload.");
-  electronReload(__dirname, {});
+  require("electron-reload")(__dirname, {}); // tslint:disable-line
 }
 
 // Try loading the application. Do this in a try/catch because we want to trap any exceptions so we can
