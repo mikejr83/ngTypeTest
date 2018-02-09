@@ -1,3 +1,4 @@
+// SPECIAL IMPORT - DETECTS IF WE'RE IN A BROWSER OR ELECTRON
 import * as isElectronEnabled from "../electron-test.js";
 
 import "polyfills";
@@ -58,6 +59,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
 
+// This provider array is dynamic based on if the app is loaded in Electron or on a client's browser.
 const providers: Provider[] = [
   {
     provide: ConfigurationService,
@@ -81,6 +83,12 @@ const providers: Provider[] = [
   }
 ];
 
+/**
+ * Root application module.
+ *
+ * @export
+ * @class AppModule
+ */
 @NgModule({
   declarations: [
     AppComponent,

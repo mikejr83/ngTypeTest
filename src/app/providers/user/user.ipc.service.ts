@@ -10,10 +10,23 @@ import { EVENTS } from "app/../../electron/constants";
 import { IUser } from "app/../../electron/user/user";
 import { UserService } from "app/providers/user/user.service";
 
-
+/**
+ * IPC/Electron implementation of the user service.
+ *
+ * @export
+ * @class UserIpcService
+ * @extends {UserService}
+ */
 @Injectable()
 export class UserIpcService extends UserService {
 
+  /**
+   * Creates an instance of UserIpcService.
+   * @param {ConfigurationService} configurationService
+   * @param {LoggerService} loggerService
+   * @param {TranslateService} translateService
+   * @memberof UserIpcService
+   */
   constructor(configurationService: ConfigurationService, loggerService: LoggerService, translateService: TranslateService) {
     super(configurationService, loggerService, translateService);
   }
@@ -71,6 +84,15 @@ export class UserIpcService extends UserService {
     })
   }
 
+  /**
+   * Registers and creats a user in the system by using IPC events with the
+   * user's information.
+   *
+   * @param {string} email The user's email or username.
+   * @param {string} name The user's dispaly name or greeting.
+   * @returns {Promise<IUser>}
+   * @memberof UserWebService
+   */
   public registerUser(email: string, name: string): Promise<IUser> {
     // Create a user object
     this.user = {

@@ -14,53 +14,185 @@ import { ITestResult } from "app/../../electron/test/result";
 import { ITestText } from "app/../../electron/test/testText";
 import { splitTextIntoWords } from "app/../../util/wordCount";
 
+/**
+ * Test state
+ */
 export enum TestStatus {
+  /**
+   * Test needs text to start
+   */
   needText = 1,
+  /**
+   * Test is ready to start; have text
+   */
   ready = 2,
+  /**
+   * Test is in the process of running; user is entering text
+   */
   running = 3,
+  /**
+   * The test was aborted by the user.
+   */
   aborted = 4,
+  /**
+   * The test was fully completed by the user.
+   */
   completed = 5
 }
 
+/**
+ * Service for test functionality.
+ *
+ * @export
+ * @abstract
+ * @class TestService
+ */
 export abstract class TestService {
-  //////////////////////////////////////////////////////////////////
+  /**
+   * Words typed incorrectly
+   *
+   * @type {HighlightTag[]}
+   * @memberof TestService
+   */
   public badWords: HighlightTag[] = [];
-
+  /**
+   * Percentage of errors in the typed text.
+   *
+   * @type {number}
+   * @memberof TestService
+   */
   public errorPercentage: number = 0;
 
+  /**
+   * Formatted string for the duration of the test.
+   *
+   * @type {string}
+   * @memberof TestService
+   */
   public formattedDuration: string;
-
+  /**
+   * Raw number of incorrect.
+   *
+   * @type {number}
+   * @memberof TestService
+   */
   public incorrect: number = 0;
-
+  /**
+   * Text information for the test.
+   *
+   * @type {ITestText}
+   * @memberof TestService
+   */
   public testTextInfo: ITestText;
-
+  /**
+   * Raw HTML for the test.
+   *
+   * @type {string}
+   * @memberof TestService
+   */
   public testHtml: string = "";
+  /**
+   * User entered text.
+   *
+   * @type {string}
+   * @memberof TestService
+   */
   public typedText: string;
-
+  /**
+   * Current test status.
+   *
+   * @type {TestStatus}
+   * @memberof TestService
+   */
   public testStatus: TestStatus = TestStatus.needText;
-
+  /**
+   * Flag for if the test started.
+   *
+   * @deprecated
+   * @type {boolean}
+   * @memberof TestService
+   */
   public testHasStarted: boolean = false;
+  /**
+   * Time when the test started.
+   *
+   * @type {moment.Moment}
+   * @memberof TestService
+   */
   public testStartTime: moment.Moment;
-
+  /**
+   * Raw length of the text the user must type.
+   *
+   * @type {number}
+   * @memberof TestService
+   */
   public textLength: number = 0;
-
+  /**
+   * Words the user has typed.
+   *
+   * @type {string[]}
+   * @memberof TestService
+   */
   public wordsTyped: string[] = [];
+  /**
+   * Current words per minute.
+   *
+   * @type {number}
+   * @memberof TestService
+   */
   public wpm: number;
-
+  /**
+   * Text broken down into words
+   *
+   * @protected
+   * @type {string[]}
+   * @memberof TestService
+   */
   protected testWords: string[];
-
+  /**
+   * Interval reference handle.
+   *
+   * @private
+   * @type {number}
+   * @memberof TestService
+   */
   private intervalRef: number;
 
-  ///////////////////////////////////////////////////////////////////
-
+  /**
+   * Creates an instance of TestService.
+   * @param {LoggerService} loggerService
+   * @param {UserService} userService
+   * @memberof TestService
+   */
   constructor(protected loggerService: LoggerService, protected userService: UserService) {
     momentDurationFormatSetup(moment);
   }
 
+  /**
+   * Load several paragraphs of text for a new test.
+   *
+   * This should set the testTextInfo
+   * @abstract
+   * @returns {Promise<string[]>}
+   * @memberof TestService
+   */
   public abstract async loadTestText(): Promise<string[]>;
 
+  /**
+   * Get all the results for a specific user.
+   *
+   * @abstract
+   * @param {string} username
+   * @returns {Promise<Array<ITestResult>>}
+   * @memberof TestService
+   */
   public abstract async loadResultsForUser(username: string): Promise<Array<ITestResult>>;
 
+  /**
+   * Rest the current state such that no test has begun.
+   *
+   * @memberof TestService
+   */
   public resetTest() {
     this.badWords = [];
     // Clear out the timer display
@@ -71,6 +203,11 @@ export abstract class TestService {
     this.testStatus = TestStatus.ready;
   }
 
+  /**
+   * Start a test when the service is in the ready state.
+   *
+   * @memberof TestService
+   */
   public startTest() {
     // You can only start a test that
     if (this.testStatus === TestStatus.ready) {
@@ -95,8 +232,21 @@ export abstract class TestService {
     this.logTest(abort, end);
   }
 
+  /**
+   * Log (save) a test result.
+   *
+   * @protected
+   * @abstract
+   * @param {boolean} abort Was the test aborted
+   * @param {Date} end When did the test end.
+   * @memberof TestService
+   */
   protected abstract logTest(abort: boolean, end: Date);
 
+  /**
+   * Make the text for the test.
+   * @param testText
+   */
   protected makeText(testText: ITestText) {
     this.loggerService.debug("Got wikipedia test text.");
 

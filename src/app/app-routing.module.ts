@@ -6,6 +6,9 @@ import { ConfigurationComponent } from "app/components/pages/configuration/confi
 import { ResultsComponent } from "app/components/pages/results/results.component";
 import { TypingTestComponent } from "app/components/pages/typing-test/typing-test.component";
 
+/**
+ * List of the routes within the application.
+ */
 const routes: Routes = [
   {
     path: "",
@@ -25,6 +28,9 @@ const routes: Routes = [
   }
 ];
 
+/**
+ * Root routing module for the application.
+ */
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]

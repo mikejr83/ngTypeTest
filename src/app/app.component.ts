@@ -4,6 +4,9 @@ import { TranslateService } from "@ngx-translate/core";
 import { ElectronService } from "app/providers/electron/electron.service";
 import { LoggerService } from "app/providers/logging/logger.service";
 
+/**
+ * Root application component.
+ */
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",

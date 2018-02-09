@@ -12,10 +12,24 @@ import { defaultConfiguration } from "app/../../electron/configuration/user";
 import { IUser } from "app/../../electron/user/user";
 import { UserService } from "app/providers/user/user.service";
 
-
+/**
+ * Web implemention of the user service.
+ *
+ * @export
+ * @class UserWebService
+ * @extends {UserService}
+ */
 @Injectable()
 export class UserWebService extends UserService {
 
+  /**
+   * Creates an instance of UserWebService.
+   * @param {ConfigurationService} configurationService
+   * @param {HttpClient} http
+   * @param {LoggerService} loggerService
+   * @param {TranslateService} translateService
+   * @memberof UserWebService
+   */
   constructor(configurationService: ConfigurationService, private http: HttpClient, loggerService: LoggerService, translateService: TranslateService) {
     super(configurationService, loggerService, translateService);
   }
@@ -61,6 +75,15 @@ export class UserWebService extends UserService {
     })
   }
 
+  /**
+   * Registers and creats a user in the system by calling the web server with the
+   * user's information.
+   *
+   * @param {string} email The user's email or username.
+   * @param {string} name The user's dispaly name or greeting.
+   * @returns {Promise<IUser>}
+   * @memberof UserWebService
+   */
   public registerUser(email: string, name: string): Promise<IUser> {
     // Create a user object
     this.user = {
@@ -71,11 +94,15 @@ export class UserWebService extends UserService {
 
     this.loggerService.debug("Sending the user to be registered in the db.", this.user);
 
+    // Return the promise to save the user.
     return new Promise<IUser>((resolve, reject) => {
+      // Clones the object and sends it via a put to the server
       this.http.put("./user", _.cloneDeep(this.user)).subscribe((savedUser) => {
+        // resolve the promise with the saved user.
         resolve(savedUser as IUser);
       }, (error) => {
         console.error(error);
+        reject(error);
       });
     });
   }

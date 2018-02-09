@@ -1,5 +1,12 @@
 import { Injectable } from "@angular/core";
 
+/**
+ *
+ *
+ * @export
+ * @abstract
+ * @class Logger
+ */
 export abstract class Logger {
 
   info: any;
